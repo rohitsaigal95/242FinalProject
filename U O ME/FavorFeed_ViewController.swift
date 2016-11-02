@@ -8,13 +8,16 @@
 
 import UIKit
 
-class FavorFeed_ViewController: UIViewController {
+
+class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var favorTable: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favorTable.registerNib(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
 
         // Do any additional setup after loading the view.
     }
@@ -27,6 +30,31 @@ class FavorFeed_ViewController: UIViewController {
     
     
     
+    // MARK: Favor tableview
+    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = favorTable.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) as! Favor_TableViewCell
+        
+        cell.topLabel.text = "collin earned 3 points from rohit for:"
+        cell.favorTitleLabel.text = "Doing homework"
+            
+        
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 88
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     
     
     
