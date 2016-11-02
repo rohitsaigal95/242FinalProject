@@ -90,7 +90,7 @@
                                             <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="bsT-f0-ihu" kind="modal" id="khl-NC-9qX"/>
+                                            <segue destination="bsT-f0-ihu" kind="modal" id="Yy9-zo-3gz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dX9-2L-TyB">
@@ -230,10 +230,10 @@
             </objects>
             <point key="canvasLocation" x="427" y="273"/>
         </scene>
-        <!--View Controller-->
+        <!--Favor Feed View Controller-->
         <scene sceneID="r7o-8z-zR3">
             <objects>
-                <viewController id="bsT-f0-ihu" sceneMemberID="viewController">
+                <viewController id="bsT-f0-ihu" customClass="FavorFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vPl-CK-mJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,6 +269,15 @@
                                         <rect key="frame" x="0.0" y="73" width="320" height="401"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <tableView key="tableFooterView" clipsSubviews="YES" alpha="0.94999998807907104" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UXz-D8-TzL">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="401"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableView>
+                                        <connections>
+                                            <outlet property="dataSource" destination="bsT-f0-ihu" id="Sql-v5-elo"/>
+                                            <outlet property="delegate" destination="bsT-f0-ihu" id="eQU-Nb-zzZ"/>
+                                        </connections>
                                     </tableView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="ThS-bZ-spa">
                                         <rect key="frame" x="0.0" y="485" width="320" height="44"/>
@@ -300,6 +309,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="favorTable" destination="3yH-U9-bp6" id="ANZ-Pv-QAF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3P-y0-fC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
