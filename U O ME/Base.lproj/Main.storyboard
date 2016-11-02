@@ -84,11 +84,23 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1yL-Wk-Jpk">
-                                        <rect key="frame" x="118" y="344" width="66" height="30"/>
+                                        <rect key="frame" x="36" y="342" width="66" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="favorfeed"/>
+                                        <state key="normal" title="favorfeed">
+                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
-                                            <segue destination="bsT-f0-ihu" kind="modal" id="n10-g6-yir"/>
+                                            <segue destination="bsT-f0-ihu" kind="modal" id="khl-NC-9qX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dX9-2L-TyB">
+                                        <rect key="frame" x="127" y="342" width="67" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="newsfeed">
+                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="qU7-In-MQe" kind="modal" id="m7n-M2-WRo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -218,10 +230,10 @@
             </objects>
             <point key="canvasLocation" x="427" y="273"/>
         </scene>
-        <!--Favor Feed View Controller-->
+        <!--View Controller-->
         <scene sceneID="r7o-8z-zR3">
             <objects>
-                <viewController id="bsT-f0-ihu" customClass="FavorFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bsT-f0-ihu" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vPl-CK-mJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,10 +269,6 @@
                                         <rect key="frame" x="0.0" y="73" width="320" height="401"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="bsT-f0-ihu" id="wLN-o7-bka"/>
-                                            <outlet property="delegate" destination="bsT-f0-ihu" id="ORs-c4-RFH"/>
-                                        </connections>
                                     </tableView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="ThS-bZ-spa">
                                         <rect key="frame" x="0.0" y="485" width="320" height="44"/>
@@ -292,18 +300,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="favorTable" destination="3yH-U9-bp6" id="kRV-If-1FJ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3P-y0-fC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="760" y="273"/>
         </scene>
-        <!--View Controller-->
+        <!--News Feed View Controller-->
         <scene sceneID="IWD-wQ-6le">
             <objects>
-                <viewController id="qU7-In-MQe" sceneMemberID="viewController">
+                <viewController id="qU7-In-MQe" customClass="NewsFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XoK-Pv-AJK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,10 +317,14 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hrV-u0-cuj">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hrV-u0-cuj">
                                         <rect key="frame" x="0.0" y="73" width="320" height="401"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="qU7-In-MQe" id="Hoy-1Z-Q7o"/>
+                                            <outlet property="delegate" destination="qU7-In-MQe" id="131-Or-MJg"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -346,6 +355,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="newsTable" destination="hrV-u0-cuj" id="4kz-uz-fbc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDD-il-IYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

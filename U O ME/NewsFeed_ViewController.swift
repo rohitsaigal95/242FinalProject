@@ -1,5 +1,5 @@
 //
-//  FavorFeed_ViewController.swift
+//  NewsFeed_ViewController.swift
 //  U O ME
 //
 //  Created by Collin Walther on 11/2/16.
@@ -9,15 +9,15 @@
 import UIKit
 
 
-class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    @IBOutlet weak var favorTable: UITableView!
+    @IBOutlet weak var newsTable: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        favorTable.registerNib(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
+        newsTable.registerNib(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
 
         // Do any additional setup after loading the view.
     }
@@ -38,7 +38,7 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = favorTable.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) as! Favor_TableViewCell
+        let cell = newsTable.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! News_TableViewCell
         
         cell.topLabel.text = "collin earned 3 points from rohit for:"
         cell.favorTitleLabel.text = "Doing homework"

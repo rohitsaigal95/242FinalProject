@@ -1,5 +1,5 @@
 //
-//  Favor_TableViewCell.swift
+//  News_TableViewCell.swift
 //  U O ME
 //
 //  Created by Collin Walther on 11/2/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Favor_TableViewCell: UITableViewCell {
+class News_TableViewCell: UITableViewCell {
 
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var favorTitleLabel: UILabel!
