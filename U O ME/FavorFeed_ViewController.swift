@@ -39,9 +39,14 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     {
         let cell = favorTable.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) as! Favor_TableViewCell
         
-        cell.topLabel.text = "collin earned 3 points from rohit for:"
-        cell.favorTitleLabel.text = "Doing homework"
-        
+        if (indexPath.row == 0){
+            cell.topLabel.text = "Collin W. is awarding 4 points for:"
+            cell.favorTitleLabel.text = "Driving me to Walmart"
+        }
+        else{
+            cell.topLabel.text = "Rohit S. is awarding 2 points for:"
+            cell.favorTitleLabel.text = "Doing the dishes"
+        }
         
         
         return cell

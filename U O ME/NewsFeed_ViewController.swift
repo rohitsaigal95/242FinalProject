@@ -40,9 +40,15 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         let cell = newsTable.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! News_TableViewCell
         
-        cell.topLabel.text = "collin earned 3 points from rohit for:"
-        cell.favorTitleLabel.text = "Doing homework"
-            
+        if indexPath.row == 0{
+            cell.topLabel.text = "Collin W. earned 3 points from Rohit S. for:"
+            cell.favorTitleLabel.text = "Doing homework"
+        }
+        else{
+            cell.topLabel.text = "Rohit S. awarded 6 points to Benjamin D. for:"
+            cell.favorTitleLabel.text = "Picking up the pizza"
+        }
+        
         
         
         return cell
