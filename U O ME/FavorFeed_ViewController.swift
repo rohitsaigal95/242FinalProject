@@ -11,6 +11,7 @@ import UIKit
 class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var favorTable: UITableView!
+    @IBOutlet weak var navButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -61,6 +62,16 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
 
+    
+    
+    
+    @IBAction func navClick(sender: AnyObject) {
+        UIView.animateWithDuration(1.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                
+            
+                        }, completion: nil)
+        
+    }
     /*
     // MARK: - Navigation
 
