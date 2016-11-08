@@ -12,7 +12,7 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var favorTable: UITableView!
     @IBOutlet weak var navButton: UIButton!
-    
+    @IBOutlet weak var favorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +64,32 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
 
     
     
+    @IBAction func buttClick(sender: AnyObject) {
+        addNavigationMenu()
+    }
     
-    @IBAction func navClick(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                
+    
+    func addNavigationMenu() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
+        self.view.insertSubview(controller.view, atIndex: 0)
+        
+        
+        
+        UIView.animateWithDuration(1.0, animations: {
+            self.favorView.frame.origin.x = 200
             
-                        }, completion: nil)
+            
+        })
+ 
+        
+        
+        
         
     }
+    
+    
     /*
     // MARK: - Navigation
 

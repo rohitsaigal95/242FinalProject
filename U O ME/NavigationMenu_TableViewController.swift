@@ -1,5 +1,5 @@
 //
-//  NavigationMenu_TableViewController.swift
+//  NavigationMenu_ViewController.swift
 //  U O ME
 //
 //  Created by Collin Walther on 11/3/16.
@@ -8,88 +8,75 @@
 
 import UIKit
 
-class NavigationMenu_TableViewController: UITableViewController {
+class NavigationMenu_ViewController: UIViewController {
 
+    @IBOutlet weak var navigationTableView: UITableView!
+    
+    struct menuItem {
+        var img = UIImage()
+        var name = String()
+    }
+    
+    var menuItems: Array<menuItem>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        configureMenuItems()
+        navigationTableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func configureMenuItems() {
+        menuItems = [
+            menuItem(img: UIImage(named: "news_icon 30x30.png")!, name: "News Feed"),
+            menuItem(img: UIImage(named: "favor_icon 30x30.png")!, name: "Favor Feed")
+            
+        ]
+        
+    }
+}
+
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+extension NavigationMenu_ViewController: UITableViewDataSource {
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 3
-    }
-
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuItems.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = navigationTableView.dequeueReusableCellWithIdentifier("NavCell", forIndexPath: indexPath) as! navigationCell
+        cell.configureCell(menuItems[indexPath.row])
         return cell
     }
     
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+
+
+
+
+class navigationCell : UITableViewCell {
+    
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var menuLabel: UILabel!
+    
+    func configureCell(menuItem: NavigationMenu_ViewController.menuItem) {
+        imgView.image = menuItem.img
+        menuLabel.text = menuItem.name
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

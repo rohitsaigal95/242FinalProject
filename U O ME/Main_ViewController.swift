@@ -120,6 +120,22 @@ class Main_ViewController: UIViewController {
     }
     
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if (textField == usernameField){
+            usernameField.endEditing(true)
+            passwordField.becomeFirstResponder()
+        }
+        else{
+            passwordField.endEditing(true)
+            loginAction(loginButton)
+        }
+        
+
+        return false
+    }
+    
+    
 
 }
 
