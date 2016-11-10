@@ -9,9 +9,10 @@
 import UIKit
 
 
-class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate{
 
     @IBOutlet weak var newsTable: UITableView!
+    @IBOutlet var newsView: UIView!
     
     
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         
         newsTable.registerNib(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
 
-        // Do any additional setup after loading the view.
+        addNavigationMenu()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +66,42 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     
+
+    // MARK: Navigation Menu
+    
+    @IBAction func navigationClick(sender: AnyObject) {
+        
+        if (self.newsView.frame.origin.x == 0){
+            showNavigationMenu()
+        }
+        else{
+            hideNavigationMenu()
+        }
+    }
+    
+    
+    func addNavigationMenu() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
+        self.view.insertSubview(controller.view, atIndex: 0)
+        
+        addChildViewController(controller)
+        controller.didMoveToParentViewController(self)
+        
+    }
+    
+    func showNavigationMenu() {
+        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.TransitionNone, animations: { self.newsView.frame.origin.x = 250}, completion: nil)
+        
+    }
+    
+    func hideNavigationMenu() {
+        UIView.animateWithDuration(0.25, animations: {
+            self.newsView.frame.origin.x = 0
+            
+        })
+    }
 
     
     

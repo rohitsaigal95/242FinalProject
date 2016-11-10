@@ -27,4 +27,69 @@ class SignUp_ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    @IBAction func signUpButtonClick(sender: AnyObject) {
+        var firstNameFilled : Bool = true
+        var lastNameFilled : Bool = true
+        var emailFilled : Bool = true
+        var passwordFilled : Bool = true
+        
+        
+        if (firstName.text == ""){
+            firstNameFilled = false
+        }
+        if (lastName.text == ""){
+            lastNameFilled = false
+        }
+        if (email.text == ""){
+            emailFilled = false
+        }
+        if (password.text == ""){
+            passwordFilled = false
+        }
+        
+        if (firstNameFilled && lastNameFilled && emailFilled && passwordFilled){
+            
+        }
+        else{
+            changeTextFieldHintColors(firstNameFilled, lastNameFlag: lastNameFilled, emailFlag: emailFilled, passwordFlag: passwordFilled)
+            let errorAlert = UIAlertView(title: "Missing information", message: "Please fill in all of the fields", delegate: self, cancelButtonTitle: "OK")
+            errorAlert.show()
+        }
+        
+    }
+    
+    
+    func changeTextFieldHintColors(firstNameFlag : Bool, lastNameFlag: Bool, emailFlag: Bool, passwordFlag: Bool){
+        
+        var pcolor : UIColor = UIColor.grayColor()
+        
+        if (firstNameFlag == false){
+            pcolor = UIColor.redColor()
+        }
+        firstName.attributedPlaceholder = NSAttributedString(string:"First Name",
+                                                                 attributes:[NSForegroundColorAttributeName: pcolor])
+        pcolor = UIColor.grayColor()
+        if (lastNameFlag == false){
+            pcolor = UIColor.redColor()
+        }
+        lastName.attributedPlaceholder = NSAttributedString(string:"Last Name",
+                                                             attributes:[NSForegroundColorAttributeName: pcolor])
+        
+        pcolor = UIColor.grayColor()
+        if (emailFlag == false){
+            pcolor = UIColor.redColor()
+        }
+        email.attributedPlaceholder = NSAttributedString(string:"Email",
+                                                             attributes:[NSForegroundColorAttributeName: pcolor])
+        
+        pcolor = UIColor.grayColor()
+        if (passwordFlag == false){
+            pcolor = UIColor.redColor()
+        }
+        password.attributedPlaceholder = NSAttributedString(string:"Password",
+                                                             attributes:[NSForegroundColorAttributeName: pcolor])
+    }
 }

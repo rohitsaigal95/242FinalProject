@@ -101,7 +101,7 @@ class Main_ViewController: UIViewController {
                 // 7.
                 let alertView = UIAlertController(title: "Login Problem",
                                                   message: "Wrong username or password." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "Foiled Again!", style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: "Try again", style: .Default, handler: nil)
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }

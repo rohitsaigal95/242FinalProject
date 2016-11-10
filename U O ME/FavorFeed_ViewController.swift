@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate {
 
     @IBOutlet weak var favorTable: UITableView!
     @IBOutlet weak var navButton: UIButton!
@@ -19,7 +19,8 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         
         favorTable.registerNib(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
         
-        // Do any additional setup after loading the view.
+        
+        addNavigationMenu()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,10 +63,16 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
 
+    // MARK: Navigation Menu
     
-    
-    @IBAction func buttClick(sender: AnyObject) {
-        addNavigationMenu()
+    @IBAction func navigationClick(sender: AnyObject) {
+        
+        if (self.favorView.frame.origin.x == 0){
+            showNavigationMenu()
+        }
+        else{
+            hideNavigationMenu()
+        }
     }
     
     
@@ -75,18 +82,21 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
         self.view.insertSubview(controller.view, atIndex: 0)
         
+        addChildViewController(controller)
+        controller.didMoveToParentViewController(self)
         
+    }
+    
+    func showNavigationMenu() {
+        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.TransitionNone, animations: { self.favorView.frame.origin.x = 250}, completion: nil)
         
-        UIView.animateWithDuration(1.0, animations: {
-            self.favorView.frame.origin.x = 200
-            
+    }
+    
+    func hideNavigationMenu() {
+        UIView.animateWithDuration(0.25, animations: {
+            self.favorView.frame.origin.x = 0
             
         })
- 
-        
-        
-        
-        
     }
     
     

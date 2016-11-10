@@ -29,39 +29,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.66999883053945508" green="0.73049406305807096" blue="0.80575098167539272" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" id="b8u-rf-RtX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" id="b8u-rf-RtX">
                                 <rect key="frame" x="0.0" y="128" width="320" height="440"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NavCell" rowHeight="58" id="LPk-KG-pvI" customClass="navigationCell" customModule="U_O_ME" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="58"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LPk-KG-pvI" id="APm-BU-ZeC">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qkg-WJ-tjE">
-                                                    <rect key="frame" x="22" y="11" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="idp-Qa-Qw1">
-                                                    <rect key="frame" x="78" y="18" width="151" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="imgView" destination="qkg-WJ-tjE" id="AGs-8q-L19"/>
-                                            <outlet property="menuLabel" destination="idp-Qa-Qw1" id="988-RC-uIk"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="LGI-DV-pIz" id="AAn-Ql-IsL"/>
                                     <outlet property="delegate" destination="LGI-DV-pIz" id="Jda-hq-cgh"/>
@@ -72,6 +44,8 @@
                     </view>
                     <connections>
                         <outlet property="navigationTableView" destination="b8u-rf-RtX" id="b1P-B1-tL0"/>
+                        <outlet property="userImageView" destination="JGH-94-oYI" id="Mat-eN-nSB"/>
+                        <outlet property="usernameButton" destination="Dp3-Wq-H8y" id="7R3-4T-VNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEu-ZK-5sa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -102,6 +76,12 @@
                                         <rect key="frame" x="79" y="423" width="162" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Sign up with Facebook"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dzr-sW-fiH">
+                                        <rect key="frame" x="79" y="278" width="162" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="Forgot your password?"/>
                                     </button>
                                     <view contentMode="scaleToFill" id="GhN-2E-7ZB">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
@@ -187,11 +167,15 @@
                                             <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kjS-Cx-jxS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dzr-sW-fiH">
-                                        <rect key="frame" x="79" y="278" width="162" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Va-Sx-Nbh">
+                                        <rect key="frame" x="214" y="342" width="57" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <state key="normal" title="Forgot your password?"/>
+                                        <state key="normal" title="invite">
+                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="7e7-3B-44n" kind="push" id="RPY-Us-GjK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -306,6 +290,9 @@
                                                 <state key="normal" title="Next">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="signUpButtonClick:" destination="Pdf-OS-aBv" eventType="touchUpInside" id="z6m-7v-AX9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -337,7 +324,7 @@
         <!--Favor Feed View Controller-->
         <scene sceneID="r7o-8z-zR3">
             <objects>
-                <viewController id="bsT-f0-ihu" customClass="FavorFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Favor Feed" id="bsT-f0-ihu" customClass="FavorFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vPl-CK-mJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -367,7 +354,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="navigation_icon.png"/>
                                                 <connections>
-                                                    <action selector="buttClick:" destination="bsT-f0-ihu" eventType="touchUpInside" id="ybz-9W-kqM"/>
+                                                    <action selector="navigationClick:" destination="bsT-f0-ihu" eventType="touchUpInside" id="Byp-s5-JcI"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -387,30 +374,6 @@
                                             <outlet property="delegate" destination="bsT-f0-ihu" id="eQU-Nb-zzZ"/>
                                         </connections>
                                     </tableView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="ThS-bZ-spa">
-                                        <rect key="frame" x="0.0" y="485" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <items>
-                                            <barButtonItem image="home_icon 30x30.png" id="qsW-m1-kdr">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </barButtonItem>
-                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Cd3-Dh-aZj"/>
-                                            <barButtonItem image="news_icon 30x30.png" id="6An-T4-Uzh">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </barButtonItem>
-                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="7yw-Q4-SIo"/>
-                                            <barButtonItem image="favor_icon 30x30.png" id="m3h-Zv-AGt">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </barButtonItem>
-                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="PJj-fF-mdd"/>
-                                            <barButtonItem image="profile_icon 30x30.png" id="77Q-Rr-dGz">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </barButtonItem>
-                                        </items>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="barTintColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -429,7 +392,7 @@
         <!--News Feed View Controller-->
         <scene sceneID="IWD-wQ-6le">
             <objects>
-                <viewController id="qU7-In-MQe" customClass="NewsFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="News Feed" id="qU7-In-MQe" customClass="NewsFeed_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XoK-Pv-AJK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,6 +401,33 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="WMp-70-4yW">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="News Feed" textAlignment="center" id="Tx0-aZ-u0b">
+                                                <rect key="frame" x="70" y="10" width="180" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_icon.png" id="bXJ-Og-4Wf">
+                                                <rect key="frame" x="264" y="14" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0kB-qV-2O2">
+                                                <rect key="frame" x="14" y="14" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="navigation_icon.png"/>
+                                                <connections>
+                                                    <action selector="navigationClick:" destination="qU7-In-MQe" eventType="touchUpInside" id="nch-pU-Ikc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hrV-u0-cuj">
                                         <rect key="frame" x="0.0" y="73" width="320" height="401"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -450,44 +440,78 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="WMp-70-4yW">
-                                <rect key="frame" x="0.0" y="20" width="320" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="News Feed" textAlignment="center" id="Tx0-aZ-u0b">
-                                        <rect key="frame" x="70" y="10" width="180" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="19"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_icon.png" id="bXJ-Og-4Wf">
-                                        <rect key="frame" x="264" y="14" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0kB-qV-2O2">
-                                        <rect key="frame" x="14" y="14" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="navigation_icon.png"/>
-                                        <connections>
-                                            <segue destination="Zcn-G7-bag" kind="modal" id="n1n-9H-uEi"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="MO1-TZ-Njz"/>
                     <connections>
                         <outlet property="newsTable" destination="hrV-u0-cuj" id="4kz-uz-fbc"/>
+                        <outlet property="newsView" destination="8jJ-ve-ZKQ" id="8xc-E6-ZDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDD-il-IYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1637" y="273"/>
+        </scene>
+        <!--Invite Contact View Controller-->
+        <scene sceneID="cd4-PP-M6k">
+            <objects>
+                <viewController storyboardIdentifier="Invite Friends" id="7e7-3B-44n" customClass="InviteContact_ViewController" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="91m-9y-q2G">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="Gh7-dl-zOB">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ctd-rk-BA3">
+                                        <rect key="frame" x="0.0" y="73" width="320" height="401"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.92756518600000004" green="0.94956149970000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="7e7-3B-44n" id="r5e-vz-7qE"/>
+                                            <outlet property="delegate" destination="7e7-3B-44n" id="7Yw-t9-qNl"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" id="0AG-Sa-DYT">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Invite a Friend" textAlignment="center" id="87H-i8-AYb">
+                                                <rect key="frame" x="70" y="10" width="180" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="19"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J7g-sH-AYS">
+                                                <rect key="frame" x="14" y="14" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="navigation_icon.png"/>
+                                                <connections>
+                                                    <action selector="navigationClick:" destination="7e7-3B-44n" eventType="touchUpInside" id="YdM-ix-0n5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.047921711140000003" green="0.061253128169999997" blue="0.21770696989999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8iC-Tb-Vap"/>
+                    <connections>
+                        <outlet property="contactTableView" destination="Ctd-rk-BA3" id="NNb-Fx-eHt"/>
+                        <outlet property="wholeView" destination="Gh7-dl-zOB" id="vMu-hw-0pR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hc9-F5-Nve" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZAf-ea-zXZ">
@@ -509,15 +533,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="favor_icon 30x30.png" width="30" height="35"/>
-        <image name="home_icon 30x30.png" width="30" height="30"/>
         <image name="navigation_icon.png" width="128" height="128"/>
-        <image name="news_icon 30x30.png" width="30" height="30"/>
         <image name="notification_icon.png" width="128" height="128"/>
-        <image name="profile_icon 30x30.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="L4e-hd-apt"/>
-        <segue reference="n1n-9H-uEi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,13 @@
 		F005EBBA1DD12CE20048857C /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F005EBB91DD12CE20048857C /* KeychainWrapper.m */; };
 		F005EBBC1DD159840048857C /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBBB1DD159840048857C /* SideMenuController.swift */; };
 		F005EBC01DD25A430048857C /* profile_icon  30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = F005EBBF1DD25A430048857C /* profile_icon  30x30.png */; };
+		F005EBC31DD28AEA0048857C /* MenuItem_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBC11DD28AEA0048857C /* MenuItem_TableViewCell.swift */; };
+		F005EBC41DD28AEA0048857C /* MenuItem_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F005EBC21DD28AEA0048857C /* MenuItem_TableViewCell.xib */; };
+		F005EBC61DD2A31F0048857C /* invite_icon 30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = F005EBC51DD2A31F0048857C /* invite_icon 30x30.png */; };
+		F005EBC81DD2B83B0048857C /* InviteContact_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBC71DD2B83B0048857C /* InviteContact_ViewController.swift */; };
+		F005EBCB1DD3C8810048857C /* Contact_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */; };
+		F005EBCC1DD3C8810048857C /* Contact_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */; };
+		F005EBCE1DD406C60048857C /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBCD1DD406C60048857C /* MessageComposer.swift */; };
 		F023EF6D1DC924AB008C8AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023EF6C1DC924AB008C8AE5 /* AppDelegate.swift */; };
 		F023EF6F1DC924AB008C8AE5 /* Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023EF6E1DC924AB008C8AE5 /* Main_ViewController.swift */; };
 		F023EF721DC924AB008C8AE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F023EF701DC924AB008C8AE5 /* Main.storyboard */; };
@@ -58,6 +65,13 @@
 		F005EBB91DD12CE20048857C /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		F005EBBB1DD159840048857C /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		F005EBBF1DD25A430048857C /* profile_icon  30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_icon  30x30.png"; sourceTree = "<group>"; };
+		F005EBC11DD28AEA0048857C /* MenuItem_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem_TableViewCell.swift; sourceTree = "<group>"; };
+		F005EBC21DD28AEA0048857C /* MenuItem_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItem_TableViewCell.xib; sourceTree = "<group>"; };
+		F005EBC51DD2A31F0048857C /* invite_icon 30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite_icon 30x30.png"; sourceTree = "<group>"; };
+		F005EBC71DD2B83B0048857C /* InviteContact_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteContact_ViewController.swift; sourceTree = "<group>"; };
+		F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact_TableViewCell.swift; sourceTree = "<group>"; };
+		F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Contact_TableViewCell.xib; sourceTree = "<group>"; };
+		F005EBCD1DD406C60048857C /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		F023EF691DC924AB008C8AE5 /* U O ME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U O ME.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F023EF6C1DC924AB008C8AE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F023EF6E1DC924AB008C8AE5 /* Main_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +128,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F005EBCF1DD407C80048857C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F005EBCD1DD406C60048857C /* MessageComposer.swift */,
+				F005EBB81DD12CE20048857C /* KeychainWrapper.h */,
+				F005EBB91DD12CE20048857C /* KeychainWrapper.m */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F023EF601DC924AB008C8AE5 = {
 			isa = PBXGroup;
 			children = (
@@ -139,8 +163,7 @@
 			children = (
 				F0DA71441DCA6419007D1E62 /* TableView Cells */,
 				F0DA71221DCA5269007D1E62 /* View Controllers */,
-				F005EBB81DD12CE20048857C /* KeychainWrapper.h */,
-				F005EBB91DD12CE20048857C /* KeychainWrapper.m */,
+				F005EBCF1DD407C80048857C /* Frameworks */,
 				F023EF6C1DC924AB008C8AE5 /* AppDelegate.swift */,
 				F023EF9D1DC957D0008C8AE5 /* Images */,
 				F023EF701DC924AB008C8AE5 /* Main.storyboard */,
@@ -175,6 +198,7 @@
 		F023EF9D1DC957D0008C8AE5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F005EBC51DD2A31F0048857C /* invite_icon 30x30.png */,
 				F005EBBF1DD25A430048857C /* profile_icon  30x30.png */,
 				F0DA71411DCA635B007D1E62 /* notification_icon.png */,
 				F0DA713F1DCA62E7007D1E62 /* navigation_icon.png */,
@@ -195,6 +219,7 @@
 				F0DA71511DCA9186007D1E62 /* FavorFeed_ViewController.swift */,
 				F076516D1DCC22C2006B52E9 /* NavigationMenu_TableViewController.swift */,
 				F005EBBB1DD159840048857C /* SideMenuController.swift */,
+				F005EBC71DD2B83B0048857C /* InviteContact_ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -206,6 +231,10 @@
 				F0DA71461DCA6456007D1E62 /* News_TableViewCell.xib */,
 				F0DA714D1DCA902D007D1E62 /* Favor_TableViewCell.swift */,
 				F0DA714E1DCA902D007D1E62 /* Favor_TableViewCell.xib */,
+				F005EBC11DD28AEA0048857C /* MenuItem_TableViewCell.swift */,
+				F005EBC21DD28AEA0048857C /* MenuItem_TableViewCell.xib */,
+				F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */,
+				F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */,
 			);
 			name = "TableView Cells";
 			sourceTree = "<group>";
@@ -322,9 +351,12 @@
 				F0DA71501DCA902D007D1E62 /* Favor_TableViewCell.xib in Resources */,
 				F023EF7A1DC924AB008C8AE5 /* LaunchScreen.storyboard in Resources */,
 				F0DA71401DCA62E7007D1E62 /* navigation_icon.png in Resources */,
+				F005EBC41DD28AEA0048857C /* MenuItem_TableViewCell.xib in Resources */,
+				F005EBCC1DD3C8810048857C /* Contact_TableViewCell.xib in Resources */,
 				F005EBC01DD25A430048857C /* profile_icon  30x30.png in Resources */,
 				F0DA713B1DCA5EA9007D1E62 /* favor_icon 30x30.png in Resources */,
 				F0DA713A1DCA5EA9007D1E62 /* news_icon 30x30.png in Resources */,
+				F005EBC61DD2A31F0048857C /* invite_icon 30x30.png in Resources */,
 				F0DA71391DCA5EA9007D1E62 /* home_icon 30x30.png in Resources */,
 				F023EF771DC924AB008C8AE5 /* Assets.xcassets in Resources */,
 				F023EF721DC924AB008C8AE5 /* Main.storyboard in Resources */,
@@ -354,10 +386,14 @@
 			files = (
 				F0AF6F3F1DCA3FFB0015FB3A /* SignUp_ViewController.swift in Sources */,
 				F005EBBC1DD159840048857C /* SideMenuController.swift in Sources */,
+				F005EBCB1DD3C8810048857C /* Contact_TableViewCell.swift in Sources */,
 				F0DA71521DCA9186007D1E62 /* FavorFeed_ViewController.swift in Sources */,
 				F023EF6F1DC924AB008C8AE5 /* Main_ViewController.swift in Sources */,
 				F076516E1DCC22C2006B52E9 /* NavigationMenu_TableViewController.swift in Sources */,
+				F005EBC31DD28AEA0048857C /* MenuItem_TableViewCell.swift in Sources */,
+				F005EBC81DD2B83B0048857C /* InviteContact_ViewController.swift in Sources */,
 				F023EF6D1DC924AB008C8AE5 /* AppDelegate.swift in Sources */,
+				F005EBCE1DD406C60048857C /* MessageComposer.swift in Sources */,
 				F0AF6F411DCA50DF0015FB3A /* NewsFeed_ViewController.swift in Sources */,
 				F0DA71471DCA6456007D1E62 /* News_TableViewCell.swift in Sources */,
 				F0DA714F1DCA902D007D1E62 /* Favor_TableViewCell.swift in Sources */,
