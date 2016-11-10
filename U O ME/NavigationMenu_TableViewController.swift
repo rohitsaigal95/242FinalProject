@@ -31,6 +31,13 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       
+        var firstName : String = NSUserDefaults.standardUserDefaults().valueForKey("firstName") as! String
+        firstName = firstName + " "
+        
+        let lastName : String = NSUserDefaults.standardUserDefaults().valueForKey("lastName") as! String
+        let fullName : String = firstName.stringByAppendingString(lastName)
+        usernameButton.setTitle(fullName, forState: .Normal)
         
         navigationTableView.registerNib(UINib(nibName: "MenuItem_TableViewCell", bundle: nil), forCellReuseIdentifier: "NavCell")
         configureMenuItems()

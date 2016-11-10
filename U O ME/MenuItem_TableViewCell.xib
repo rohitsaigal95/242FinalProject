@@ -14,16 +14,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTS-wq-bFt">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTS-wq-bFt">
                         <rect key="frame" x="8" y="13" width="36" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="Cgv-dk-r5y"/>
+                            <constraint firstAttribute="height" constant="34" id="Rge-Zm-Nqr"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk2-Ez-cez">
-                        <rect key="frame" x="57" y="19" width="165" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk2-Ez-cez">
+                        <rect key="frame" x="57" y="19" width="213" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVt-Ur-N4G">
+                        <rect key="frame" x="0.0" y="54" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="jKf-vu-dWf"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="OVt-Ur-N4G" secondAttribute="bottom" id="0aa-eD-4AV"/>
+                    <constraint firstAttribute="trailing" secondItem="OVt-Ur-N4G" secondAttribute="trailing" id="Ans-Nb-7fX"/>
+                    <constraint firstItem="OVt-Ur-N4G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DEF-Q2-lhf"/>
+                    <constraint firstItem="KTS-wq-bFt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="F5d-XC-PJd"/>
+                    <constraint firstAttribute="trailing" secondItem="qk2-Ez-cez" secondAttribute="trailing" constant="50" id="Fdc-fH-Tv9"/>
+                    <constraint firstItem="qk2-Ez-cez" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="K8P-Q8-elJ"/>
+                    <constraint firstItem="OVt-Ur-N4G" firstAttribute="top" secondItem="qk2-Ez-cez" secondAttribute="bottom" constant="14" id="hxK-K9-maz"/>
+                    <constraint firstItem="OVt-Ur-N4G" firstAttribute="top" secondItem="KTS-wq-bFt" secondAttribute="bottom" constant="7" id="l4z-5d-cov"/>
+                    <constraint firstItem="qk2-Ez-cez" firstAttribute="leading" secondItem="KTS-wq-bFt" secondAttribute="trailing" constant="13" id="qd9-o5-ylz"/>
+                    <constraint firstItem="KTS-wq-bFt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="yRq-O4-OL6"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>

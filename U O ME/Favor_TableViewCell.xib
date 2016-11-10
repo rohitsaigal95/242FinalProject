@@ -38,10 +38,19 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7xR-BA-syR">
+                        <rect key="frame" x="0.0" y="106" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="1Lh-DC-f5d"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bWM-WX-XWH" firstAttribute="top" secondItem="zJ2-ae-RSb" secondAttribute="bottom" constant="5" id="1pK-M9-Guo"/>
+                    <constraint firstAttribute="trailing" secondItem="7xR-BA-syR" secondAttribute="trailing" id="3EU-A3-EFb"/>
                     <constraint firstItem="b5C-qF-AXT" firstAttribute="leading" secondItem="Uzf-Af-vrc" secondAttribute="leading" id="MSd-qb-Lnh"/>
+                    <constraint firstItem="b5C-qF-AXT" firstAttribute="top" secondItem="7xR-BA-syR" secondAttribute="bottom" id="UQ3-ZH-Vm1"/>
                     <constraint firstAttribute="trailing" secondItem="b5C-qF-AXT" secondAttribute="trailing" id="Vtj-PD-0y1"/>
                     <constraint firstItem="zJ2-ae-RSb" firstAttribute="top" secondItem="Uzf-Af-vrc" secondAttribute="top" constant="10" id="bzZ-Qd-KeW"/>
                     <constraint firstAttribute="trailing" secondItem="zJ2-ae-RSb" secondAttribute="trailing" constant="22" id="ekq-Cg-iN5"/>
@@ -53,6 +62,7 @@
                     <constraint firstAttribute="bottom" secondItem="S9Q-Pf-zxP" secondAttribute="bottom" constant="10" id="tZo-d0-0EB"/>
                     <constraint firstAttribute="trailing" secondItem="bWM-WX-XWH" secondAttribute="trailing" constant="22" id="ucI-92-RZ0"/>
                     <constraint firstItem="S9Q-Pf-zxP" firstAttribute="leading" secondItem="Uzf-Af-vrc" secondAttribute="leading" constant="106" id="yeF-Ro-fEb"/>
+                    <constraint firstItem="7xR-BA-syR" firstAttribute="leading" secondItem="Uzf-Af-vrc" secondAttribute="leading" id="zQ3-3u-LaW"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

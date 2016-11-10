@@ -10,6 +10,8 @@ import UIKit
 
 class SignUp_ViewController: UIViewController {
     
+    let MyKeychainWrapper = KeychainWrapper()
+    
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -51,7 +53,20 @@ class SignUp_ViewController: UIViewController {
         }
         
         if (firstNameFilled && lastNameFilled && emailFilled && passwordFilled){
+            NSUserDefaults.standardUserDefaults().setValue(firstName.text, forKey: "firstName")
+            NSUserDefaults.standardUserDefaults().setValue(lastName.text, forKey: "lastName")
+            NSUserDefaults.standardUserDefaults().setValue(email.text, forKey: "email")
+
             
+            print(password.text)
+            MyKeychainWrapper.mySetObject(password.text!, forKey:"v_Data")
+            MyKeychainWrapper.writeToKeychain()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewControllerWithIdentifier("News Feed")
+            self.presentViewController(controller, animated: true, completion: nil)
         }
         else{
             changeTextFieldHintColors(firstNameFilled, lastNameFlag: lastNameFilled, emailFlag: emailFilled, passwordFlag: passwordFilled)

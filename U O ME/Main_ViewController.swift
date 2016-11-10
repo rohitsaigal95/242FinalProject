@@ -11,8 +11,7 @@ import UIKit
 class Main_ViewController: UIViewController {
     
     let MyKeychainWrapper = KeychainWrapper()
-    let createLoginButtonTag = 0
-    let loginButtonTag = 1
+
     @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var usernameField: UITextField!
@@ -24,22 +23,8 @@ class Main_ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // 1.
-        let hasLogin = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
         
-        // 2.
-        if hasLogin {
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
-            loginButton.tag = loginButtonTag
-            //createInfoLabel.hidden = true
-        } else {
-            loginButton.setTitle("Create", forState: UIControlState.Normal)
-            loginButton.tag = createLoginButtonTag
-            //createInfoLabel.hidden = false
-        }
-        
-        // 3.
-        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
+        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String {
             usernameField.text = storedUsername as String
         }
     }
@@ -62,39 +47,19 @@ class Main_ViewController: UIViewController {
     
     @IBAction func loginAction(sender: AnyObject) {
         
-        // 1.
         if (usernameField.text == "" || passwordField.text == "") {
             let alertView = UIAlertController(title: "Login Problem",
                                               message: "Wrong username or password." as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "Foiled Again!", style: .Default, handler: nil)
+            let okAction = UIAlertAction(title: "Try again", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
             return;
         }
         
-        // 2.
         usernameField.resignFirstResponder()
         passwordField.resignFirstResponder()
         
-        // 3.
-        if sender.tag == createLoginButtonTag {
-            
-            // 4.
-            let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
-            if hasLoginKey == false {
-                NSUserDefaults.standardUserDefaults().setValue(self.usernameField.text, forKey: "username")
-            }
-            
-            // 5.
-            MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
-            MyKeychainWrapper.writeToKeychain()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            loginButton.tag = loginButtonTag
-            
-            performSegueWithIdentifier("newsFeed", sender: self)
-        } else if sender.tag == loginButtonTag {
-            // 6.
+        
             if checkLogin(usernameField.text!, password: passwordField.text!) {
                 performSegueWithIdentifier("newsFeed", sender: self)
             } else {
@@ -105,14 +70,16 @@ class Main_ViewController: UIViewController {
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }
-        }
+        
         
     }
     
     
     func checkLogin(username: String, password: String ) -> Bool {
-        if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
-            username == NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
+
+        if password == MyKeychainWrapper.myObjectForKey("v_Data") as! String &&
+            username == NSUserDefaults.standardUserDefaults().valueForKey("email") as? String {
+            print("Success login!")
             return true
         } else {
             return false

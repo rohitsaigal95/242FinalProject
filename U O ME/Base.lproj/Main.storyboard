@@ -17,15 +17,22 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JGH-94-oYI">
-                                        <rect key="frame" x="26" y="29" width="48" height="46"/>
+                                    <view contentMode="scaleToFill" id="7VO-OX-TsX">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dp3-Wq-H8y">
-                                        <rect key="frame" x="82" y="37" width="88" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="&lt;user&gt;"/>
-                                    </button>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon  30x30.png" id="JGH-94-oYI">
+                                                <rect key="frame" x="17" y="31" width="48" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dp3-Wq-H8y">
+                                                <rect key="frame" x="73" y="31" width="166" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="&lt;user&gt;"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.89975492420000003" green="0.92109174429999996" blue="0.97001799740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.66999883053945508" green="0.73049406305807096" blue="0.80575098167539272" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -102,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="162" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username/Email/Phone number" textAlignment="natural" minimumFontSize="17" id="4TF-s1-4FB">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" id="4TF-s1-4FB">
                                                 <rect key="frame" x="8" y="7" width="304" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -535,6 +542,7 @@
     <resources>
         <image name="navigation_icon.png" width="128" height="128"/>
         <image name="notification_icon.png" width="128" height="128"/>
+        <image name="profile_icon  30x30.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="L4e-hd-apt"/>
