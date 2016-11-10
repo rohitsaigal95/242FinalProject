@@ -143,26 +143,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1yL-Wk-Jpk">
-                                        <rect key="frame" x="36" y="342" width="66" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="favorfeed">
-                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="bsT-f0-ihu" kind="modal" id="Yy9-zo-3gz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dX9-2L-TyB">
-                                        <rect key="frame" x="127" y="342" width="67" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="newsfeed">
-                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="qU7-In-MQe" kind="modal" id="m7n-M2-WRo"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g7n-oy-l6j">
                                         <rect key="frame" x="137" y="247" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -172,16 +152,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kjS-Cx-jxS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Va-Sx-Nbh">
-                                        <rect key="frame" x="214" y="342" width="57" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="invite">
-                                            <color key="titleColor" red="1" green="0.94510153320000001" blue="0.14679052549999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="7e7-3B-44n" kind="push" id="RPY-Us-GjK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -544,7 +514,4 @@
         <image name="notification_icon.png" width="128" height="128"/>
         <image name="profile_icon  30x30.png" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="L4e-hd-apt"/>
-    </inferredMetricsTieBreakers>
 </document>
