@@ -46,6 +46,10 @@
 		F0E528871DD556C000915DCE /* Favor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528851DD556C000915DCE /* Favor.swift */; };
 		F0E528881DD556C000915DCE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528861DD556C000915DCE /* User.swift */; };
 		F0E5288A1DD559D400915DCE /* RequestFavor_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */; };
+		F0E5288C1DD57E4300915DCE /* Badges_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E5288B1DD57E4300915DCE /* Badges_ViewController.swift */; };
+		F0E528911DD57F1A00915DCE /* Badge_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E5288F1DD57F1A00915DCE /* Badge_CollectionViewCell.swift */; };
+		F0E528921DD57F1A00915DCE /* Badge_CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E528901DD57F1A00915DCE /* Badge_CollectionViewCell.xib */; };
+		F0E528971DD58F3000915DCE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528961DD58F3000915DCE /* Badge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,10 @@
 		F0E528851DD556C000915DCE /* Favor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favor.swift; sourceTree = "<group>"; };
 		F0E528861DD556C000915DCE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFavor_ViewController.swift; sourceTree = "<group>"; };
+		F0E5288B1DD57E4300915DCE /* Badges_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badges_ViewController.swift; sourceTree = "<group>"; };
+		F0E5288F1DD57F1A00915DCE /* Badge_CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge_CollectionViewCell.swift; sourceTree = "<group>"; };
+		F0E528901DD57F1A00915DCE /* Badge_CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Badge_CollectionViewCell.xib; sourceTree = "<group>"; };
+		F0E528961DD58F3000915DCE /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +221,7 @@
 		F023EF9D1DC957D0008C8AE5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F0E528951DD58A5E00915DCE /* Badges */,
 				F005EBC51DD2A31F0048857C /* invite_icon 30x30.png */,
 				F005EBBF1DD25A430048857C /* profile_icon  30x30.png */,
 				F0DA71411DCA635B007D1E62 /* notification_icon.png */,
@@ -237,6 +246,7 @@
 				F005EBC71DD2B83B0048857C /* InviteContact_ViewController.swift */,
 				F0E528791DD555F300915DCE /* UserProfile_ViewController.swift */,
 				F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */,
+				F0E5288B1DD57E4300915DCE /* Badges_ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 				F0E528801DD5561900915DCE /* Navigation Menu */,
 				F0E528811DD5562400915DCE /* Contacts */,
 				F0E528821DD5563300915DCE /* User History */,
+				F0E5288F1DD57F1A00915DCE /* Badge_CollectionViewCell.swift */,
+				F0E528901DD57F1A00915DCE /* Badge_CollectionViewCell.xib */,
 			);
 			name = "TableView Cells";
 			sourceTree = "<group>";
@@ -303,8 +315,16 @@
 			children = (
 				F0E528851DD556C000915DCE /* Favor.swift */,
 				F0E528861DD556C000915DCE /* User.swift */,
+				F0E528961DD58F3000915DCE /* Badge.swift */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		F0E528951DD58A5E00915DCE /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Badges;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +448,7 @@
 				F023EF7A1DC924AB008C8AE5 /* LaunchScreen.storyboard in Resources */,
 				F0DA71401DCA62E7007D1E62 /* navigation_icon.png in Resources */,
 				F005EBC41DD28AEA0048857C /* MenuItem_TableViewCell.xib in Resources */,
+				F0E528921DD57F1A00915DCE /* Badge_CollectionViewCell.xib in Resources */,
 				F005EBCC1DD3C8810048857C /* Contact_TableViewCell.xib in Resources */,
 				F005EBC01DD25A430048857C /* profile_icon  30x30.png in Resources */,
 				F0DA713B1DCA5EA9007D1E62 /* favor_icon 30x30.png in Resources */,
@@ -464,11 +485,13 @@
 				F0AF6F3F1DCA3FFB0015FB3A /* SignUp_ViewController.swift in Sources */,
 				F005EBBC1DD159840048857C /* SideMenuController.swift in Sources */,
 				F005EBCB1DD3C8810048857C /* Contact_TableViewCell.swift in Sources */,
+				F0E528971DD58F3000915DCE /* Badge.swift in Sources */,
 				F0DA71521DCA9186007D1E62 /* FavorFeed_ViewController.swift in Sources */,
 				F023EF6F1DC924AB008C8AE5 /* Main_ViewController.swift in Sources */,
 				F076516E1DCC22C2006B52E9 /* NavigationMenu_TableViewController.swift in Sources */,
 				F005EBC31DD28AEA0048857C /* MenuItem_TableViewCell.swift in Sources */,
 				F005EBC81DD2B83B0048857C /* InviteContact_ViewController.swift in Sources */,
+				F0E528911DD57F1A00915DCE /* Badge_CollectionViewCell.swift in Sources */,
 				F023EF6D1DC924AB008C8AE5 /* AppDelegate.swift in Sources */,
 				F005EBCE1DD406C60048857C /* MessageComposer.swift in Sources */,
 				F0AF6F411DCA50DF0015FB3A /* NewsFeed_ViewController.swift in Sources */,
@@ -478,6 +501,7 @@
 				F0E5287A1DD555F300915DCE /* UserHistory_TableViewCell.swift in Sources */,
 				F0E5288A1DD559D400915DCE /* RequestFavor_ViewController.swift in Sources */,
 				F023EF751DC924AB008C8AE5 /* U_O_ME.xcdatamodeld in Sources */,
+				F0E5288C1DD57E4300915DCE /* Badges_ViewController.swift in Sources */,
 				F0E528871DD556C000915DCE /* Favor.swift in Sources */,
 				F005EBBA1DD12CE20048857C /* KeychainWrapper.m in Sources */,
 				F0E528881DD556C000915DCE /* User.swift in Sources */,
