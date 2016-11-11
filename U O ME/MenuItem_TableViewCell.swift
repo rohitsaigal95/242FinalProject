@@ -18,14 +18,14 @@ class MenuItem_TableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     
-    func configureCell(menuItem: NavigationMenu_ViewController.menuItem) {
+    func configureCell(_ menuItem: NavigationMenu_ViewController.menuItem) {
         itemImageView.image = menuItem.img
         itemLabel.text = menuItem.name
     }

@@ -40,32 +40,32 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     func getContacts() {
         let store = CNContactStore()
         
-        if CNContactStore.authorizationStatusForEntityType(.Contacts) == .NotDetermined {
-            store.requestAccessForEntityType(.Contacts, completionHandler: { (authorized: Bool, error: NSError?) -> Void in
+        if CNContactStore.authorizationStatus(for: .contacts) == .notDetermined {
+            store.requestAccess(for: .contacts, completionHandler: { (authorized: Bool, error: Error?) -> Void in
                 if authorized {
                     self.retrieveContactsWithStore(store)
                 }
             })
-        } else if CNContactStore.authorizationStatusForEntityType(.Contacts) == .Authorized {
+        } else if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             self.retrieveContactsWithStore(store)
         }
     }
     
     
     // Used https://code.tutsplus.com/tutorials/ios-9-an-introduction-to-the-contacts-framework--cms-25599
-    func retrieveContactsWithStore(store: CNContactStore) {
+    func retrieveContactsWithStore(_ store: CNContactStore) {
         do {
             
-            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey, CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey, CNContactImageDataKey])
+            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as CNKeyDescriptor, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor])
             
             do {
-                try store.enumerateContactsWithFetchRequest(request) { contact, stop in
+                try store.enumerateContacts(with: request) { contact, stop in
                     self.contactsData.append(contact)
                 }
             } catch {
                 print(error)
             }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.contactTableView.reloadData()
             })
         } catch {
@@ -80,32 +80,32 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("NUMROWS: ", self.contactsData
             .count)
         return self.contactsData.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        contactTableView.registerNib(UINib(nibName: "Contact_TableViewCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
+        contactTableView.register(UINib(nibName: "Contact_TableViewCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         
         
-        var cell = contactTableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as! Contact_TableViewCell
+        let cell = contactTableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! Contact_TableViewCell
         let contact = self.contactsData[indexPath.row]
         let formatter = CNContactFormatter()
-        formatter.style = .FullName
+        formatter.style = .fullName
         
-        cell.nameLabel.text = formatter.stringFromContact(contact)
+        cell.nameLabel.text = formatter.string(from: contact)
         
         if (contact.isKeyAvailable(CNContactPhoneNumbersKey)) {
             //for phoneNumber:CNLabeledValue in contact.phoneNumbers {
             let phoneNumber:CNLabeledValue = contact.phoneNumbers[0]
-                let a = phoneNumber.value as! CNPhoneNumber
+                let a = phoneNumber.value 
                 cell.phoneLabel.text = a.stringValue
             //}
         }
@@ -119,11 +119,11 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = self.contactsData[indexPath.row]
         
         let phoneNumber:CNLabeledValue = contact.phoneNumbers[0]
-        let a = phoneNumber.value as! CNPhoneNumber
+        let a = phoneNumber.value 
         let number = a.stringValue
         sendTextMessage(number)
         
@@ -137,7 +137,7 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     // Why reinvent the wheel?
     // https://www.andrewcbancroft.com/2014/10/28/send-text-message-in-app-using-mfmessagecomposeviewcontroller-with-swift/
     func sendTextMessage
-        (num: String) {
+        (_ num: String) {
         // Create a MessageComposer
         let messageComposer = MessageComposer(number: num)
         
@@ -150,7 +150,7 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
             // Present the configured MFMessageComposeViewController instance
             // Note that the dismissal of the VC will be handled by the messageComposer instance,
             // since it implements the appropriate delegate call-back
-            presentViewController(messageComposeVC, animated: true, completion: nil)
+            present(messageComposeVC, animated: true, completion: nil)
         } else {
             // Let the user know if his/her device isn't able to send text messages
             let errorAlert = UIAlertView(title: "Cannot Send Text Message", message: "Your device is not able to send text messages.", delegate: self, cancelButtonTitle: "OK")
@@ -162,7 +162,7 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: Navigation Menu
     
-    @IBAction func navigationClick(sender: AnyObject) {
+    @IBAction func navigationClick(_ sender: AnyObject) {
         
         if (self.wholeView.frame.origin.x == 0){
             showNavigationMenu()
@@ -176,21 +176,21 @@ class InviteContact_ViewController: UIViewController, UITableViewDataSource, UIT
     func addNavigationMenu() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
-        self.view.insertSubview(controller.view, atIndex: 0)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NavigationMenuViewController")
+        self.view.insertSubview(controller.view, at: 0)
         
         addChildViewController(controller)
-        controller.didMoveToParentViewController(self)
+        controller.didMove(toParentViewController: self)
         
     }
     
     func showNavigationMenu() {
-        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.TransitionNone, animations: { self.wholeView.frame.origin.x = 250}, completion: nil)
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: { self.wholeView.frame.origin.x = 250}, completion: nil)
         
     }
     
     func hideNavigationMenu() {
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.wholeView.frame.origin.x = 0
             
         })

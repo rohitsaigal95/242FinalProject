@@ -40,6 +40,12 @@
 		F0DA714F1DCA902D007D1E62 /* Favor_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA714D1DCA902D007D1E62 /* Favor_TableViewCell.swift */; };
 		F0DA71501DCA902D007D1E62 /* Favor_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DA714E1DCA902D007D1E62 /* Favor_TableViewCell.xib */; };
 		F0DA71521DCA9186007D1E62 /* FavorFeed_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA71511DCA9186007D1E62 /* FavorFeed_ViewController.swift */; };
+		F0E5287A1DD555F300915DCE /* UserHistory_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528761DD555F300915DCE /* UserHistory_TableViewCell.swift */; };
+		F0E5287B1DD555F300915DCE /* UserHistory_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E528771DD555F300915DCE /* UserHistory_TableViewCell.xib */; };
+		F0E5287D1DD555F300915DCE /* UserProfile_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528791DD555F300915DCE /* UserProfile_ViewController.swift */; };
+		F0E528871DD556C000915DCE /* Favor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528851DD556C000915DCE /* Favor.swift */; };
+		F0E528881DD556C000915DCE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528861DD556C000915DCE /* User.swift */; };
+		F0E5288A1DD559D400915DCE /* RequestFavor_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +107,13 @@
 		F0DA714D1DCA902D007D1E62 /* Favor_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favor_TableViewCell.swift; sourceTree = "<group>"; };
 		F0DA714E1DCA902D007D1E62 /* Favor_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Favor_TableViewCell.xib; sourceTree = "<group>"; };
 		F0DA71511DCA9186007D1E62 /* FavorFeed_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavorFeed_ViewController.swift; sourceTree = "<group>"; };
+		F0E528751DD5073E00915DCE /* U O ME.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "U O ME.entitlements"; sourceTree = "<group>"; };
+		F0E528761DD555F300915DCE /* UserHistory_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHistory_TableViewCell.swift; sourceTree = "<group>"; };
+		F0E528771DD555F300915DCE /* UserHistory_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHistory_TableViewCell.xib; sourceTree = "<group>"; };
+		F0E528791DD555F300915DCE /* UserProfile_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile_ViewController.swift; sourceTree = "<group>"; };
+		F0E528851DD556C000915DCE /* Favor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favor.swift; sourceTree = "<group>"; };
+		F0E528861DD556C000915DCE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFavor_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +174,7 @@
 		F023EF6B1DC924AB008C8AE5 /* U O ME */ = {
 			isa = PBXGroup;
 			children = (
+				F0E528841DD5568E00915DCE /* Objects */,
 				F0DA71441DCA6419007D1E62 /* TableView Cells */,
 				F0DA71221DCA5269007D1E62 /* View Controllers */,
 				F005EBCF1DD407C80048857C /* Frameworks */,
@@ -173,6 +187,7 @@
 				F023EF7B1DC924AB008C8AE5 /* Info.plist */,
 				F023EF731DC924AB008C8AE5 /* U_O_ME.xcdatamodeld */,
 				F005EBB71DD12CE10048857C /* U O ME-Bridging-Header.h */,
+				F0E528751DD5073E00915DCE /* U O ME.entitlements */,
 			);
 			path = "U O ME";
 			sourceTree = "<group>";
@@ -220,6 +235,8 @@
 				F076516D1DCC22C2006B52E9 /* NavigationMenu_TableViewController.swift */,
 				F005EBBB1DD159840048857C /* SideMenuController.swift */,
 				F005EBC71DD2B83B0048857C /* InviteContact_ViewController.swift */,
+				F0E528791DD555F300915DCE /* UserProfile_ViewController.swift */,
+				F0E528891DD559D400915DCE /* RequestFavor_ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -227,16 +244,67 @@
 		F0DA71441DCA6419007D1E62 /* TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F0E5287E1DD5560700915DCE /* News Feed */,
+				F0E5287F1DD5561300915DCE /* Favor Feed */,
+				F0E528801DD5561900915DCE /* Navigation Menu */,
+				F0E528811DD5562400915DCE /* Contacts */,
+				F0E528821DD5563300915DCE /* User History */,
+			);
+			name = "TableView Cells";
+			sourceTree = "<group>";
+		};
+		F0E5287E1DD5560700915DCE /* News Feed */ = {
+			isa = PBXGroup;
+			children = (
 				F0DA71451DCA6456007D1E62 /* News_TableViewCell.swift */,
 				F0DA71461DCA6456007D1E62 /* News_TableViewCell.xib */,
+			);
+			name = "News Feed";
+			sourceTree = "<group>";
+		};
+		F0E5287F1DD5561300915DCE /* Favor Feed */ = {
+			isa = PBXGroup;
+			children = (
 				F0DA714D1DCA902D007D1E62 /* Favor_TableViewCell.swift */,
 				F0DA714E1DCA902D007D1E62 /* Favor_TableViewCell.xib */,
+			);
+			name = "Favor Feed";
+			sourceTree = "<group>";
+		};
+		F0E528801DD5561900915DCE /* Navigation Menu */ = {
+			isa = PBXGroup;
+			children = (
 				F005EBC11DD28AEA0048857C /* MenuItem_TableViewCell.swift */,
 				F005EBC21DD28AEA0048857C /* MenuItem_TableViewCell.xib */,
+			);
+			name = "Navigation Menu";
+			sourceTree = "<group>";
+		};
+		F0E528811DD5562400915DCE /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
 				F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */,
 				F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */,
 			);
-			name = "TableView Cells";
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		F0E528821DD5563300915DCE /* User History */ = {
+			isa = PBXGroup;
+			children = (
+				F0E528761DD555F300915DCE /* UserHistory_TableViewCell.swift */,
+				F0E528771DD555F300915DCE /* UserHistory_TableViewCell.xib */,
+			);
+			name = "User History";
+			sourceTree = "<group>";
+		};
+		F0E528841DD5568E00915DCE /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F0E528851DD556C000915DCE /* Favor.swift */,
+				F0E528861DD556C000915DCE /* User.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,13 +376,21 @@
 					F023EF681DC924AB008C8AE5 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = BG9XZ5V7YM;
+						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					F023EF7F1DC924AB008C8AE5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = F023EF681DC924AB008C8AE5;
 					};
 					F023EF8A1DC924AB008C8AE5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = F023EF681DC924AB008C8AE5;
 					};
 				};
@@ -358,6 +434,7 @@
 				F0DA713A1DCA5EA9007D1E62 /* news_icon 30x30.png in Resources */,
 				F005EBC61DD2A31F0048857C /* invite_icon 30x30.png in Resources */,
 				F0DA71391DCA5EA9007D1E62 /* home_icon 30x30.png in Resources */,
+				F0E5287B1DD555F300915DCE /* UserHistory_TableViewCell.xib in Resources */,
 				F023EF771DC924AB008C8AE5 /* Assets.xcassets in Resources */,
 				F023EF721DC924AB008C8AE5 /* Main.storyboard in Resources */,
 			);
@@ -397,8 +474,13 @@
 				F0AF6F411DCA50DF0015FB3A /* NewsFeed_ViewController.swift in Sources */,
 				F0DA71471DCA6456007D1E62 /* News_TableViewCell.swift in Sources */,
 				F0DA714F1DCA902D007D1E62 /* Favor_TableViewCell.swift in Sources */,
+				F0E5287D1DD555F300915DCE /* UserProfile_ViewController.swift in Sources */,
+				F0E5287A1DD555F300915DCE /* UserHistory_TableViewCell.swift in Sources */,
+				F0E5288A1DD559D400915DCE /* RequestFavor_ViewController.swift in Sources */,
 				F023EF751DC924AB008C8AE5 /* U_O_ME.xcdatamodeld in Sources */,
+				F0E528871DD556C000915DCE /* Favor.swift in Sources */,
 				F005EBBA1DD12CE20048857C /* KeychainWrapper.m in Sources */,
+				F0E528881DD556C000915DCE /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "U O ME/U O ME.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "U O ME/Info.plist";
@@ -550,6 +633,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "U O ME/U O ME-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -558,6 +642,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "U O ME/U O ME.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "U O ME/Info.plist";
@@ -566,6 +651,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "U O ME/U O ME-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -577,6 +663,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-METests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/U O ME.app/U O ME";
 			};
 			name = Debug;
@@ -589,6 +676,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-METests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/U O ME.app/U O ME";
 			};
 			name = Release;
@@ -600,6 +688,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-MEUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "U O ME";
 			};
 			name = Debug;
@@ -611,6 +700,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-MEUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "U O ME";
 			};
 			name = Release;

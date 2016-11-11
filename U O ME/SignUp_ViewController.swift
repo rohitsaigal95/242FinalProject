@@ -32,7 +32,7 @@ class SignUp_ViewController: UIViewController {
     
     
     
-    @IBAction func signUpButtonClick(sender: AnyObject) {
+    @IBAction func signUpButtonClick(_ sender: AnyObject) {
         var firstNameFilled : Bool = true
         var lastNameFilled : Bool = true
         var emailFilled : Bool = true
@@ -53,20 +53,20 @@ class SignUp_ViewController: UIViewController {
         }
         
         if (firstNameFilled && lastNameFilled && emailFilled && passwordFilled){
-            NSUserDefaults.standardUserDefaults().setValue(firstName.text, forKey: "firstName")
-            NSUserDefaults.standardUserDefaults().setValue(lastName.text, forKey: "lastName")
-            NSUserDefaults.standardUserDefaults().setValue(email.text, forKey: "email")
+            UserDefaults.standard.setValue(firstName.text, forKey: "firstName")
+            UserDefaults.standard.setValue(lastName.text, forKey: "lastName")
+            UserDefaults.standard.setValue(email.text, forKey: "email")
 
             
             print(password.text)
             MyKeychainWrapper.mySetObject(password.text!, forKey:"v_Data")
             MyKeychainWrapper.writeToKeychain()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(true, forKey: "hasLoginKey")
+            UserDefaults.standard.synchronize()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewControllerWithIdentifier("News Feed")
-            self.presentViewController(controller, animated: true, completion: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "News Feed")
+            self.present(controller, animated: true, completion: nil)
         }
         else{
             changeTextFieldHintColors(firstNameFilled, lastNameFlag: lastNameFilled, emailFlag: emailFilled, passwordFlag: passwordFilled)
@@ -77,32 +77,32 @@ class SignUp_ViewController: UIViewController {
     }
     
     
-    func changeTextFieldHintColors(firstNameFlag : Bool, lastNameFlag: Bool, emailFlag: Bool, passwordFlag: Bool){
+    func changeTextFieldHintColors(_ firstNameFlag : Bool, lastNameFlag: Bool, emailFlag: Bool, passwordFlag: Bool){
         
-        var pcolor : UIColor = UIColor.grayColor()
+        var pcolor : UIColor = UIColor.gray
         
         if (firstNameFlag == false){
-            pcolor = UIColor.redColor()
+            pcolor = UIColor.red
         }
         firstName.attributedPlaceholder = NSAttributedString(string:"First Name",
                                                                  attributes:[NSForegroundColorAttributeName: pcolor])
-        pcolor = UIColor.grayColor()
+        pcolor = UIColor.gray
         if (lastNameFlag == false){
-            pcolor = UIColor.redColor()
+            pcolor = UIColor.red
         }
         lastName.attributedPlaceholder = NSAttributedString(string:"Last Name",
                                                              attributes:[NSForegroundColorAttributeName: pcolor])
         
-        pcolor = UIColor.grayColor()
+        pcolor = UIColor.gray
         if (emailFlag == false){
-            pcolor = UIColor.redColor()
+            pcolor = UIColor.red
         }
         email.attributedPlaceholder = NSAttributedString(string:"Email",
                                                              attributes:[NSForegroundColorAttributeName: pcolor])
         
-        pcolor = UIColor.grayColor()
+        pcolor = UIColor.gray
         if (passwordFlag == false){
-            pcolor = UIColor.redColor()
+            pcolor = UIColor.red
         }
         password.attributedPlaceholder = NSAttributedString(string:"Password",
                                                              attributes:[NSForegroundColorAttributeName: pcolor])

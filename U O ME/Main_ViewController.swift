@@ -24,7 +24,7 @@ class Main_ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String {
+        if let storedUsername = UserDefaults.standard.value(forKey: "email") as? String {
             usernameField.text = storedUsername as String
         }
     }
@@ -36,23 +36,23 @@ class Main_ViewController: UIViewController {
     
     
 
-    func handleSwipe(sender:UISwipeGestureRecognizer){
-        if (sender.direction == .Left){
-            print("dsfds")
+    func handleSwipe(_ sender:UISwipeGestureRecognizer){
+        if (sender.direction == .left){
+            print("swiped left")
         }
     }
 
     
     
     
-    @IBAction func loginAction(sender: AnyObject) {
+    @IBAction func loginAction(_ sender: AnyObject) {
         
         if (usernameField.text == "" || passwordField.text == "") {
             let alertView = UIAlertController(title: "Login Problem",
-                                              message: "Wrong username or password." as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "Try again", style: .Default, handler: nil)
+                                              message: "Wrong username or password." as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
             alertView.addAction(okAction)
-            self.presentViewController(alertView, animated: true, completion: nil)
+            self.present(alertView, animated: true, completion: nil)
             return;
         }
         
@@ -61,24 +61,24 @@ class Main_ViewController: UIViewController {
         
         
             if checkLogin(usernameField.text!, password: passwordField.text!) {
-                performSegueWithIdentifier("newsFeed", sender: self)
+                performSegue(withIdentifier: "newsFeed", sender: self)
             } else {
                 // 7.
                 let alertView = UIAlertController(title: "Login Problem",
-                                                  message: "Wrong username or password." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "Try again", style: .Default, handler: nil)
+                                                  message: "Wrong username or password." as String, preferredStyle:.alert)
+                let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
                 alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             }
         
         
     }
     
     
-    func checkLogin(username: String, password: String ) -> Bool {
+    func checkLogin(_ username: String, password: String ) -> Bool {
 
-        if password == MyKeychainWrapper.myObjectForKey("v_Data") as! String &&
-            username == NSUserDefaults.standardUserDefaults().valueForKey("email") as? String {
+        if password == MyKeychainWrapper.myObject(forKey: "v_Data") as! String &&
+            username == UserDefaults.standard.value(forKey: "email") as? String {
             print("Success login!")
             return true
         } else {
@@ -87,7 +87,7 @@ class Main_ViewController: UIViewController {
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if (textField == usernameField){
             usernameField.endEditing(true)

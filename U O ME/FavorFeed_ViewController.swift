@@ -9,18 +9,20 @@
 import UIKit
 
 class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate {
-
+    
+    @IBOutlet var wholeView: UIView!
     @IBOutlet weak var favorTable: UITableView!
-    @IBOutlet weak var navButton: UIButton!
-    @IBOutlet weak var favorView: UIView!
+    var friends:[User]!
+    var value:User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        favorTable.registerNib(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
+        favorTable.register(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
         
+        // Do any additional setup after loading the view.
         
-        addNavigationMenu()
+        self.addNavigationMenu()
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,42 +34,55 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     // MARK: Favor tableview
-    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
+        if let user=value{
+            return user.favorHistory.count
+        }
         return 2
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = favorTable.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) as! Favor_TableViewCell
-        
-        if (indexPath.row == 0){
-            cell.topLabel.text = "Collin W. is awarding 4 points for:"
-            cell.favorTitleLabel.text = "Driving me to Walmart"
+        if let user=value{
+            let cell = favorTable.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! Favor_TableViewCell
+            let currFavor=user.favorHistory[indexPath.row]
+            cell.topLabel.text = currFavor.recipient.name+" earned "+String(currFavor.value) + " points from " + user.name+" for:"
+            
+            cell.favorTitleLabel.text = currFavor.favorDescription as String
+            
+            return cell
+            
         }
         else{
-            cell.topLabel.text = "Rohit S. is awarding 2 points for:"
-            cell.favorTitleLabel.text = "Doing the dishes"
+            let cell = favorTable.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! Favor_TableViewCell
+            
+            cell.topLabel.text = "collin earned 3 points from rohit for:"
+            cell.favorTitleLabel.text = "Doing homework"
+            
+            
+            
+            return cell
         }
-        
-        
-        return cell
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 108
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-
+    
+    
+    
+    
     // MARK: Navigation Menu
     
-    @IBAction func navigationClick(sender: AnyObject) {
+    @IBAction func navigationClick(_ sender: AnyObject) {
         
-        if (self.favorView.frame.origin.x == 0){
+        if (self.wholeView.frame.origin.x == 0){
             showNavigationMenu()
         }
         else{
@@ -79,35 +94,39 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     func addNavigationMenu() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
-        self.view.insertSubview(controller.view, atIndex: 0)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NavigationMenuViewController")
+        self.view.insertSubview(controller.view, at: 0)
         
         addChildViewController(controller)
-        controller.didMoveToParentViewController(self)
+        controller.didMove(toParentViewController: self)
         
     }
     
     func showNavigationMenu() {
-        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.TransitionNone, animations: { self.favorView.frame.origin.x = 250}, completion: nil)
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: { self.wholeView.frame.origin.x = 250}, completion: nil)
         
     }
     
     func hideNavigationMenu() {
-        UIView.animateWithDuration(0.25, animations: {
-            self.favorView.frame.origin.x = 0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.wholeView.frame.origin.x = 0
             
         })
     }
+
+    
+    
+    
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

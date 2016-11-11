@@ -32,14 +32,14 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
        
-        var firstName : String = NSUserDefaults.standardUserDefaults().valueForKey("firstName") as! String
+        var firstName : String = UserDefaults.standard.value(forKey: "firstName") as! String
         firstName = firstName + " "
         
-        let lastName : String = NSUserDefaults.standardUserDefaults().valueForKey("lastName") as! String
-        let fullName : String = firstName.stringByAppendingString(lastName)
-        usernameButton.setTitle(fullName, forState: .Normal)
+        let lastName : String = UserDefaults.standard.value(forKey: "lastName") as! String
+        let fullName : String = firstName + lastName
+        usernameButton.setTitle(fullName, for: UIControlState())
         
-        navigationTableView.registerNib(UINib(nibName: "MenuItem_TableViewCell", bundle: nil), forCellReuseIdentifier: "NavCell")
+        navigationTableView.register(UINib(nibName: "MenuItem_TableViewCell", bundle: nil), forCellReuseIdentifier: "NavCell")
         configureMenuItems()
         navigationTableView.reloadData()
     }
@@ -63,16 +63,16 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
 
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = navigationTableView.dequeueReusableCellWithIdentifier("NavCell", forIndexPath: indexPath) as! MenuItem_TableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = navigationTableView.dequeueReusableCell(withIdentifier: "NavCell", for: indexPath) as! MenuItem_TableViewCell
         
         cell.configureCell(menuItems[indexPath.row])
         return cell
@@ -82,13 +82,13 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
 
 // Mark: Table View Delegate
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Clicked menuItem")
         let vc_name = menuItems[indexPath.row].name
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier(vc_name)
+        let controller = storyboard.instantiateViewController(withIdentifier: vc_name)
         //self.presentViewController(controller, animated: true, completion: nil)
         
         
@@ -96,9 +96,17 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
         transition.duration = 0.2
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
-        view.window!.layer.addAnimation(transition, forKey: kCATransition)
-        presentViewController(controller, animated: false, completion: nil)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(controller, animated: false, completion: nil)
         
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 108
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
 }

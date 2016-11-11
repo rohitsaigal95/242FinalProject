@@ -18,7 +18,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newsTable.registerNib(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
+        newsTable.register(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
 
         addNavigationMenu()
     }
@@ -32,14 +32,14 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     // MARK: Favor tableview
-    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
         return 2
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = newsTable.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! News_TableViewCell
+        let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell
         
         if indexPath.row == 0{
             cell.topLabel.text = "Collin W. earned 3 points from Rohit S. for:"
@@ -55,11 +55,11 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -69,7 +69,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
 
     // MARK: Navigation Menu
     
-    @IBAction func navigationClick(sender: AnyObject) {
+    @IBAction func navigationClick(_ sender: AnyObject) {
         
         if (self.newsView.frame.origin.x == 0){
             showNavigationMenu()
@@ -83,21 +83,21 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     func addNavigationMenu() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("NavigationMenuViewController")
-        self.view.insertSubview(controller.view, atIndex: 0)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NavigationMenuViewController")
+        self.view.insertSubview(controller.view, at: 0)
         
         addChildViewController(controller)
-        controller.didMoveToParentViewController(self)
+        controller.didMove(toParentViewController: self)
         
     }
     
     func showNavigationMenu() {
-        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions.TransitionNone, animations: { self.newsView.frame.origin.x = 250}, completion: nil)
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: { self.newsView.frame.origin.x = 250}, completion: nil)
         
     }
     
     func hideNavigationMenu() {
-        UIView.animateWithDuration(0.25, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.newsView.frame.origin.x = 0
             
         })
