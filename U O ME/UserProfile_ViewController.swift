@@ -9,7 +9,7 @@
 import UIKit
 
 
-class UserProfile: UIViewController {
+class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var userPicture: UIImageView!
     @IBOutlet weak var favorHistory: UITableView!
@@ -54,7 +54,7 @@ class UserProfile: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
         print(user.favorHistory.count)
         return user.favorHistory.count
@@ -64,7 +64,7 @@ class UserProfile: UIViewController {
     /*
     defines the cell that will be shown in a user's profile 
  */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = favorHistory.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! UserHistory_TableViewCell
  
@@ -79,11 +79,11 @@ class UserProfile: UIViewController {
         return cell
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

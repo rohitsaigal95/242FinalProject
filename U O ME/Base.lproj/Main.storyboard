@@ -577,7 +577,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="bsT-f0-ihu" kind="push" id="VDL-9E-rho"/>
+                                            <segue destination="bsT-f0-ihu" kind="modal" id="kUq-mH-435"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IBv-X8-4lB">
