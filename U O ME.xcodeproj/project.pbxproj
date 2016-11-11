@@ -17,6 +17,11 @@
 		F005EBCB1DD3C8810048857C /* Contact_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */; };
 		F005EBCC1DD3C8810048857C /* Contact_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */; };
 		F005EBCE1DD406C60048857C /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005EBCD1DD406C60048857C /* MessageComposer.swift */; };
+		F0085DB61DD63AEE00338BC1 /* 100Favors_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = F0085DB11DD63AEE00338BC1 /* 100Favors_badge.png */; };
+		F0085DB71DD63AEE00338BC1 /* Consistent_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = F0085DB21DD63AEE00338BC1 /* Consistent_badge.png */; };
+		F0085DB81DD63AEE00338BC1 /* InviteAFriend_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = F0085DB31DD63AEE00338BC1 /* InviteAFriend_badge.png */; };
+		F0085DB91DD63AEE00338BC1 /* Level5_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = F0085DB41DD63AEE00338BC1 /* Level5_badge.png */; };
+		F0085DBA1DD63AEE00338BC1 /* ProPic_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = F0085DB51DD63AEE00338BC1 /* ProPic_badge.png */; };
 		F023EF6D1DC924AB008C8AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023EF6C1DC924AB008C8AE5 /* AppDelegate.swift */; };
 		F023EF6F1DC924AB008C8AE5 /* Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023EF6E1DC924AB008C8AE5 /* Main_ViewController.swift */; };
 		F023EF721DC924AB008C8AE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F023EF701DC924AB008C8AE5 /* Main.storyboard */; };
@@ -82,6 +87,11 @@
 		F005EBC91DD3C8810048857C /* Contact_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact_TableViewCell.swift; sourceTree = "<group>"; };
 		F005EBCA1DD3C8810048857C /* Contact_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Contact_TableViewCell.xib; sourceTree = "<group>"; };
 		F005EBCD1DD406C60048857C /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
+		F0085DB11DD63AEE00338BC1 /* 100Favors_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100Favors_badge.png; sourceTree = "<group>"; };
+		F0085DB21DD63AEE00338BC1 /* Consistent_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Consistent_badge.png; sourceTree = "<group>"; };
+		F0085DB31DD63AEE00338BC1 /* InviteAFriend_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteAFriend_badge.png; sourceTree = "<group>"; };
+		F0085DB41DD63AEE00338BC1 /* Level5_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Level5_badge.png; sourceTree = "<group>"; };
+		F0085DB51DD63AEE00338BC1 /* ProPic_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProPic_badge.png; sourceTree = "<group>"; };
 		F023EF691DC924AB008C8AE5 /* U O ME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U O ME.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F023EF6C1DC924AB008C8AE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F023EF6E1DC924AB008C8AE5 /* Main_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_ViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +333,11 @@
 		F0E528951DD58A5E00915DCE /* Badges */ = {
 			isa = PBXGroup;
 			children = (
+				F0085DB11DD63AEE00338BC1 /* 100Favors_badge.png */,
+				F0085DB21DD63AEE00338BC1 /* Consistent_badge.png */,
+				F0085DB31DD63AEE00338BC1 /* InviteAFriend_badge.png */,
+				F0085DB41DD63AEE00338BC1 /* Level5_badge.png */,
+				F0085DB51DD63AEE00338BC1 /* ProPic_badge.png */,
 			);
 			name = Badges;
 			sourceTree = "<group>";
@@ -441,8 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0DA71481DCA6456007D1E62 /* News_TableViewCell.xib in Resources */,
+				F0085DB81DD63AEE00338BC1 /* InviteAFriend_badge.png in Resources */,
 				F0DA712C1DCA5CDC007D1E62 /* Images.xcassets in Resources */,
 				F0DA713C1DCA5EA9007D1E62 /* profile_icon 30x30.png in Resources */,
+				F0085DB91DD63AEE00338BC1 /* Level5_badge.png in Resources */,
 				F0DA71421DCA635B007D1E62 /* notification_icon.png in Resources */,
 				F0DA71501DCA902D007D1E62 /* Favor_TableViewCell.xib in Resources */,
 				F023EF7A1DC924AB008C8AE5 /* LaunchScreen.storyboard in Resources */,
@@ -455,8 +472,11 @@
 				F0DA713A1DCA5EA9007D1E62 /* news_icon 30x30.png in Resources */,
 				F005EBC61DD2A31F0048857C /* invite_icon 30x30.png in Resources */,
 				F0DA71391DCA5EA9007D1E62 /* home_icon 30x30.png in Resources */,
+				F0085DB71DD63AEE00338BC1 /* Consistent_badge.png in Resources */,
+				F0085DBA1DD63AEE00338BC1 /* ProPic_badge.png in Resources */,
 				F0E5287B1DD555F300915DCE /* UserHistory_TableViewCell.xib in Resources */,
 				F023EF771DC924AB008C8AE5 /* Assets.xcassets in Resources */,
+				F0085DB61DD63AEE00338BC1 /* 100Favors_badge.png in Resources */,
 				F023EF721DC924AB008C8AE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

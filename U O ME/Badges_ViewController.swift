@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NavigationMenu_ViewControllerDelegate {
+class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NavigationMenu_ViewControllerDelegate{
 
     @IBOutlet weak var wholeView: UIView!
     @IBOutlet weak var badgesCollectionView: UICollectionView!
@@ -36,12 +36,15 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Collection View data source
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        if (section == 1){
+            return 2
+        }
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,7 +52,11 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Badge Cell",
                                                       for: indexPath) as! Badge_CollectionViewCell
         
-        cell.configureCell(badge: badgeList[indexPath.row])
+        let index :Int = (indexPath.section * 3) + indexPath.item
+        
+        if (index < badgeList.count){
+            cell.configureCell(badge: badgeList[index])
+        }
         
         return cell
         
@@ -57,37 +64,45 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
     
     
     // MARK: - Collection View delegate
-    /*
     
-    func collectionView(_ collectionView: UICollectionView,
-                           layout collectionViewLayout: UICollectionViewLayout,
-                           sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
-        //let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        //let availableWidth = view.frame.width - paddingSpace
-        //let widthPerItem = availableWidth / itemsPerRow
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //return CGSize(width: widthPerItem, height: widthPerItem)
+        print("selected cell")
         
-        print("sdfds")
-        return CGSize(width: 181, height: 181)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        
+        let backdrop: UIView = UIView(frame: CGRect(x: 0, y: 0, width: wholeView.frame.width, height: wholeView.frame.height))
+        backdrop.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        backdrop.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitBadgeFocus(gestureRecognizer:)))
+        backdrop.addGestureRecognizer(tapRecognizer)
+        
+        let backgroundView: UIView = UIView(frame: CGRect(x: 40, y: 80, width: 200, height: 200))
+        backgroundView.backgroundColor = UIColor.cyan
+        
+        let index: Int = (indexPath.section * 3) + indexPath.item
+        let badge: Badge = badgeList[index]
+
+        
+        let titleLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+        titleLabel.text = badge.badgeLabelText
+        
+        let descriptionLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 40, width: 200, height: 20))
+        descriptionLabel.text = badge.badgeDescription
+        
+        
+        backgroundView.addSubview(titleLabel)
+        backgroundView.addSubview(descriptionLabel)
+        backdrop.addSubview(backgroundView)
+        
+        wholeView.addSubview(backdrop)
+        
     }
 
-    */
+    
+    func exitBadgeFocus(gestureRecognizer: UITapGestureRecognizer) {
+        let backdrop = gestureRecognizer.view!
+        backdrop.removeFromSuperview()
+    }
     
     
     

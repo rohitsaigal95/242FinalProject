@@ -26,9 +26,11 @@ class Badge_CollectionViewCell: UICollectionViewCell {
     
     func configureCell(badge: Badge){
         
+        print (badge.badgeLabelText)
+        
         self.badgeImageView.image = badge.badgeImage
         self.badgeLabel.text = badge.badgeLabelText
-        self.badgeProgressView.progress = badge.badgeProgressView.progress
+        self.badgeProgressView.progress = badge.badgeProgress
         
     }
 

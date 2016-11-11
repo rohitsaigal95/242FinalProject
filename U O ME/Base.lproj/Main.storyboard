@@ -417,7 +417,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.65000000000000002" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="z7R-sy-AG7">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.65000000000000002" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" id="z7R-sy-AG7">
                                         <rect key="frame" x="8" y="157" width="304" height="303"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.66999883049999998" green="0.73049406309999998" blue="0.80575098170000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,7 +430,7 @@
                                         <cells/>
                                         <connections>
                                             <outlet property="dataSource" destination="PNM-d6-faT" id="3gt-fV-dvJ"/>
-                                            <outlet property="delegate" destination="PNM-d6-faT" id="yrl-yq-64p"/>
+                                            <outlet property="delegate" destination="PNM-d6-faT" id="lja-pH-SyQ"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
@@ -576,7 +576,6 @@
         <!--Navigation Controller-->
         <scene sceneID="ZAf-ea-zXZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tk6-mz-DWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Zcn-G7-bag" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="w0k-Da-Fok">
@@ -588,6 +587,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Kd3-ZM-cky"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tk6-mz-DWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="76" y="273"/>
         </scene>

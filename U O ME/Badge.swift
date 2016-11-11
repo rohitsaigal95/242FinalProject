@@ -12,21 +12,26 @@ class Badge: NSObject {
 
     let badgeImage: UIImage
     let badgeLabelText: String
-    let badgeProgressView: UIProgressView
+    let badgeProgress: Float
     let badgeDescription : String
     
     
-    init(badgeImage: UIImage, badgeLabelText: String, badgeProgressView: UIProgressView, badgeDescription: String){
+    init(badgeImage: UIImage, badgeLabelText: String, badgeProgress: Float, badgeDescription: String){
         
         self.badgeImage = badgeImage
         self.badgeLabelText = badgeLabelText
-        self.badgeProgressView = badgeProgressView
+        self.badgeProgress = badgeProgress
         self.badgeDescription = badgeDescription
         
     }
     
     class func getBadgeList() -> Array<Badge>{
-        return [Badge(badgeImage: UIImage(named: "invite_icon 30x30.png")!, badgeLabelText: "Badge Name", badgeProgressView: UIProgressView(), badgeDescription: "desc")]
+        return [Badge(badgeImage: UIImage(named: "Level5_badge.png")!, badgeLabelText: "Reach level 5", badgeProgress: 0.2, badgeDescription: "Complete favors to level up!"),
+        Badge(badgeImage: UIImage(named: "InviteAFriend_badge.png")!, badgeLabelText: "Invite a friend", badgeProgress: 0.8, badgeDescription: "Invite a friend to join!"),
+        Badge(badgeImage: UIImage(named: "ProPic_badge.png")!, badgeLabelText: "Say cheese", badgeProgress: 0.5, badgeDescription: "Upload a profile pic to show off to your friends"),
+        Badge(badgeImage: UIImage(named: "Consistent_badge.png")!, badgeLabelText: "Consistency", badgeProgress: 0.5, badgeDescription: "Complete 5 favors for 1 of your friends"),
+        Badge(badgeImage: UIImage(named: "100Favors_badge.png")!, badgeLabelText: "Complete 100 favors", badgeProgress: 0.5, badgeDescription: "You're deserve a nice trophy for this achievement. Fulfill 100 of your friends favors."),
+        ]
         
     
         
