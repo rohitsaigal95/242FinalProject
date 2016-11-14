@@ -18,6 +18,18 @@ class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var user:User!
     var value:User!
     
+    
+    
+    @IBOutlet weak var badge1ImageView: UIImageView!
+    @IBOutlet weak var badge1Label: UILabel!
+    @IBOutlet weak var badge2ImageView: UIImageView!
+    @IBOutlet weak var badge2Label: UILabel!
+    @IBOutlet weak var badge3ImageView: UIImageView!
+    @IBOutlet weak var badge3Label: UILabel!
+    @IBOutlet weak var badge4ImageView: UIImageView!
+    @IBOutlet weak var badge4Label: UILabel!
+    
+    
     /*
  set up a fake data base of friends */
     var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0)]
@@ -37,7 +49,7 @@ class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource 
         print(user.favorHistory.count)
         userName.text=user.name
         userLevel.text="Level: " + String(user.level)
-        userPicture=UIImageView(image: user.picture)
+        userPicture.image = user.picture
         
         
         

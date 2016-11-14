@@ -16,6 +16,9 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
     //fileprivate let itemsPerRow: CGFloat = 3
     let badgeList: Array<Badge> = Badge.getBadgeList()
     
+    let numSections: Int = 2
+    let numInSections: Int = 3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +39,7 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Collection View data source
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return numSections
     }
     
     
@@ -44,7 +47,7 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
         if (section == 1){
             return 2
         }
-        return 3
+        return numInSections
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,35 +69,64 @@ class Badges_ViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Collection View delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         print("selected cell")
-        
+        let index :Int = (indexPath.section * 3) + indexPath.item
+        let badge: Badge = badgeList[index]
         
         let backdrop: UIView = UIView(frame: CGRect(x: 0, y: 0, width: wholeView.frame.width, height: wholeView.frame.height))
-        backdrop.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        wholeView.addSubview(backdrop)
+        backdrop.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         backdrop.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.exitBadgeFocus(gestureRecognizer:)))
         backdrop.addGestureRecognizer(tapRecognizer)
         
-        let backgroundView: UIView = UIView(frame: CGRect(x: 40, y: 80, width: 200, height: 200))
-        backgroundView.backgroundColor = UIColor.cyan
-        
-        let index: Int = (indexPath.section * 3) + indexPath.item
-        let badge: Badge = badgeList[index]
-
-        
-        let titleLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        titleLabel.text = badge.badgeLabelText
-        
-        let descriptionLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 40, width: 200, height: 20))
-        descriptionLabel.text = badge.badgeDescription
-        
-        
-        backgroundView.addSubview(titleLabel)
-        backgroundView.addSubview(descriptionLabel)
+        let backgroundView = UIView()
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backdrop.addSubview(backgroundView)
+        backgroundView.backgroundColor = UIColor.darkGray
+        let bgHorizontalConstraint = NSLayoutConstraint(item: backgroundView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: backdrop, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let bgVerticalConstraint = NSLayoutConstraint(item: backgroundView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: backdrop, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        let bgWidthConstraint = NSLayoutConstraint(item: backgroundView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 200)
+        let bgHeightConstraint = NSLayoutConstraint(item: backgroundView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 260)
+        backdrop.addConstraints([bgHorizontalConstraint, bgVerticalConstraint, bgWidthConstraint, bgHeightConstraint])
         
-        wholeView.addSubview(backdrop)
+        
+        let badgeImage = UIImageView()
+        badgeImage.translatesAutoresizingMaskIntoConstraints = false
+        badgeImage.image = badge.badgeImage
+        backgroundView.addSubview(badgeImage)
+        let biHorizontalConstraint = NSLayoutConstraint(item: badgeImage, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: backgroundView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let biVerticalConstraint = NSLayoutConstraint(item: badgeImage, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: backgroundView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 25)
+        let biWidthConstraint = NSLayoutConstraint(item: badgeImage, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 90)
+        let biHeightConstraint = NSLayoutConstraint(item: badgeImage, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 90)
+        backgroundView.addConstraints([biHorizontalConstraint, biVerticalConstraint, biWidthConstraint, biHeightConstraint])
+        
+        
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = badge.badgeLabelText
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont(name: "Avenir", size: 14)
+        backgroundView.addSubview(titleLabel)
+        let tlHorizontalConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: backgroundView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let tlVerticalConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: badgeImage, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 5)
+        let tlWidthConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 200)
+        let tlHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
+        backgroundView.addConstraints([tlHorizontalConstraint, tlVerticalConstraint, tlWidthConstraint, tlHeightConstraint])
+        
+        
+        let descLabel = UILabel()
+        descLabel.translatesAutoresizingMaskIntoConstraints = false
+        descLabel.text = badge.badgeDescription
+        descLabel.textAlignment = .center
+        descLabel.numberOfLines = 0
+        descLabel.font = UIFont(name: "Avenir", size: 14)
+        backgroundView.addSubview(descLabel)
+        let dlHorizontalConstraint = NSLayoutConstraint(item: descLabel, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: backgroundView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let dlVerticalConstraint = NSLayoutConstraint(item: descLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 10)
+        let dlWidthConstraint = NSLayoutConstraint(item: descLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 200-20)
+        let dlHeightConstraint = NSLayoutConstraint(item: descLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 80)
+        backgroundView.addConstraints([dlHorizontalConstraint, dlVerticalConstraint, dlWidthConstraint, dlHeightConstraint])
         
     }
 
