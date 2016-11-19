@@ -13,8 +13,10 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var newsTable: UITableView!
     @IBOutlet var newsView: UIView!
-    
-    
+    var user:User!
+    var friends:[User]!
+    var newsFeed:[Favor]!
+    var currFeed:[Favor]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +27,8 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        performSegue(withIdentifier: "SignUpToNews", sender: self)
+        
         // Dispose of any resources that can be recreated.
     }
     
@@ -34,11 +38,26 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: Favor tableview
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
+        
+    if let value=newsFeed{
+        return value.count
+        }
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        if let value=newsFeed{
+            let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell
+            let curr=value[indexPath.row]
+            cell.topLabel.text=(curr.sender.name + " earned/awared "+String(curr.value)+" points from " + curr.recipient.name)
+            cell.favorTitleLabel.text=curr.favorDescription as String
+            
+            return cell
+        }
+        else{
+            print("fack")
+           
         let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell
         
         if indexPath.row == 0{
@@ -53,6 +72,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,9 +83,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         return UITableViewAutomaticDimension
     }
     
-    
-    
-    
+
 
     // MARK: Navigation Menu
     
@@ -81,13 +99,14 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func addNavigationMenu() {
-        
+        //performSegue(withIdentifier: "NewsToNav", sender: self)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NavigationMenuViewController")
         self.view.insertSubview(controller.view, at: 0)
         
         addChildViewController(controller)
         controller.didMove(toParentViewController: self)
+        
         
     }
     
@@ -119,5 +138,11 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //pass data
+    
 
+    
+    
+    
 }

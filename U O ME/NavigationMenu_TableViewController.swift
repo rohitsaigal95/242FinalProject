@@ -20,6 +20,9 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var navigationTableView: UITableView!
+    var user:User!
+    var friends:[User]!
+    var newsFeed:[Favor]!
     
     struct menuItem {
         var img = UIImage()
@@ -30,7 +33,7 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
        
         var firstName : String = UserDefaults.standard.value(forKey: "firstName") as! String
         firstName = firstName + " "
@@ -86,18 +89,27 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
         
         print("Clicked menuItem")
         let vc_name = menuItems[indexPath.row].name
+        switch vc_name {
+        case "News Feed":
+            performSegue(withIdentifier: "NavToNews", sender: self)
+        case "Favor Feed":
+            performSegue(withIdentifier: "NavToFavor", sender: self)
+        default:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: vc_name)
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            present(controller, animated: false, completion: nil)
+        }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: vc_name)
         //self.presentViewController(controller, animated: true, completion: nil)
         
         
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
-        present(controller, animated: false, completion: nil)
+        
+      
         
     }
     
@@ -108,6 +120,132 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if(segue.identifier == "NavToNews"){
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+//            present(controller, animated: false, completion: nil)
+            
+            print("called")
+          
+            let newsController = (segue.destination as! NewsFeed_ViewController)
+            //let p=parent as! NewsFeed_ViewController
+            if let p=parent as? NewsFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? UserProfile{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? FavorFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            
+        }
+        if(segue.identifier == "NavToProfile"){
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            //            present(controller, animated: false, completion: nil)
+            
+            print("called")
+            
+            let newsController = (segue.destination as! UserProfile)
+            //let p=parent as! NewsFeed_ViewController
+            if let p=parent as? NewsFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? UserProfile{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? FavorFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            
+        }
+        if(segue.identifier == "NavToFavor"){
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            //            present(controller, animated: false, completion: nil)
+            
+            print("called")
+            
+            let newsController = (segue.destination as! FavorFeed_ViewController)
+            //let p=parent as! NewsFeed_ViewController
+            if let p=parent as? NewsFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? UserProfile{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            else if let p=parent as? FavorFeed_ViewController{
+                newsController.newsFeed = p.newsFeed
+                newsController.friends=p.friends
+                newsController.user=p.user
+            }
+            
+        }
+        if(segue.identifier=="NavToAccept"){
+            
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            //            present(controller, animated: false, completion: nil)
+            
+            print("called")
+            
+            let acceptController = (segue.destination as! Accept_ViewController)
+            //let p=parent as! NewsFeed_ViewController
+            if let p=parent as? NewsFeed_ViewController{
+                acceptController.newsFeed = p.newsFeed
+                acceptController.friends=p.friends
+                acceptController.user=p.user
+            }
+            else if let p=parent as? UserProfile{
+                acceptController.newsFeed = p.newsFeed
+                acceptController.friends=p.friends
+                acceptController.user=p.user
+            }
+            else if let p=parent as? FavorFeed_ViewController{
+                acceptController.newsFeed = p.newsFeed
+                acceptController.friends=p.friends
+                acceptController.user=p.user
+            }
+
+            
+            
+        }
+    }
+    
+    
     
 }
 

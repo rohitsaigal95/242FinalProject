@@ -12,14 +12,17 @@ class Favor: NSObject {
     let value:NSInteger
     let recipient:User
     let favorDescription: NSString
+    let sender:User
     
-    
-    init(value:NSInteger,recipient:User,favorDescription:NSString){
+    init(sender:User,value:NSInteger,recipient:User,favorDescription:NSString){
+        self.sender=sender
         self.value=value
         self.recipient=recipient
         self.favorDescription=favorDescription
         
         
     }
+    
+    
     
 }

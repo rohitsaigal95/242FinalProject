@@ -17,16 +17,37 @@ class Main_ViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet var swipeRecognizer: UISwipeGestureRecognizer!
-    
+    var owner:User?
+    var friends:[User]?
+    var news:[Favor]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        var assigned=false
+        friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu"),User(name: "Rohit", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"rohitnsaigal@gmail.com")]
         
         if let storedUsername = UserDefaults.standard.value(forKey: "email") as? String {
             usernameField.text = storedUsername as String
+            for u in friends!{
+                print(u.name)
+                switch(u.email.caseInsensitiveCompare(storedUsername))
+                    
+                {
+                case .orderedSame:
+                    owner=u
+                    assigned=true
+                    break
+                default:
+                    break
+                }
+            }
+            
         }
+        if(assigned==true){print("true")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,7 +123,31 @@ class Main_ViewController: UIViewController {
         return false
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="newsFeed"){
+            print("called")
+            let newsFeed=segue.destination as! NewsFeed_ViewController
+            let toAccept=Favor(sender: (friends?[0])!, value: 3, recipient: owner!, favorDescription: "Give me a ride from grainger?")
+            let toAccept2=Favor(sender: (friends?[1])!, value: 10, recipient: owner!, favorDescription: "Give me An A+++++ :) m?")
+            owner?.pendingFavors.append(toAccept)
+            owner?.pendingFavors.append(toAccept2)
+            
+             
+            newsFeed.user=owner
+            newsFeed.friends=friends
+            let news = [Favor(sender: (friends?[0])!, value: 0, recipient: owner!, favorDescription: "This is a newsfeed favor")]
+            newsFeed.newsFeed=news
+            
+        }
+        
+//        if(segue.identifier == "LoginToFavor"){
+//            var user:User=User(name: String, level: <#T##NSInteger#>, image: <#T##UIImage#>, points: <#T##NSInteger#>)
+//            let requestFavor = (segue.destination as! RequestFavor)
+//            requestFavor.value = user
+//            requestFavor.friends=friends
+//        }
+        
+    }
 
 }
 

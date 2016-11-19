@@ -13,7 +13,9 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var wholeView: UIView!
     @IBOutlet weak var favorTable: UITableView!
     var friends:[User]!
-    var value:User!
+    var user:User!
+    var newsFeed:[Favor]!
+    var idx:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,20 +38,50 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: Favor tableview
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        if let user=value{
-            return user.favorHistory.count
+        if let value=user{
+            
+            print("Val"+String(value.favorHistory.count))
+            return value.pendingFavors.count
         }
-        return 2
+        return 1
     }
+    @IBAction func acceptTask(_ sender: UIButton) {
+        /// implement accept a task
+        print("click1111")
+        let touchpoint: CGPoint = sender.convert(CGPoint.zero, to: self.favorTable)
+        let buttonIndexPath: NSIndexPath = self.favorTable.indexPathForRow(at: touchpoint)! as NSIndexPath
+        idx=buttonIndexPath.row
+//        var touchPoint = sender.convert(CGPoint.zero, to: favorTable)
+//        // maintable --> replace your tableview name
+//        var x:NSIndexPath
+//        x=
+//        print(clickedButtonIndexPath.Row)
+        performSegue(withIdentifier: "FavorToAccept", sender: self)
+//
+////        if (sender.tag == 0)
+//        {
+//            
+//            user?.pendingFavors.remove(at: sender.tag)
+//         
+//        }
+    }
+    
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if let user=value{
+        
+        
+        if let value=user{
             let cell = favorTable.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! Favor_TableViewCell
-            let currFavor=user.favorHistory[indexPath.row]
-            cell.topLabel.text = currFavor.recipient.name+" earned "+String(currFavor.value) + " points from " + user.name+" for:"
+            let currFavor=value.pendingFavors[indexPath.row]
+            cell.topLabel.text = currFavor.sender.name+" is requesting "+String(currFavor.value) + " points from " + currFavor.recipient.name+" for:"
             
             cell.favorTitleLabel.text = currFavor.favorDescription as String
+            cell.acceptButton.tag=indexPath.row
+            cell.recipient=value
+            cell.acceptButton.addTarget(self, action: #selector(FavorFeed_ViewController.acceptTask(_:)), for: .touchUpInside)
             
             return cell
             
@@ -66,11 +98,12 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return 108
+    func tableView( _ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 300
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView( _ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -114,7 +147,16 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         })
     }
 
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "FavorToAccept"){
+            print("favor to Accept")
+            let userProfile = (segue.destination as! Accept_ViewController)
+            userProfile.user = user
+            userProfile.friends=friends
+            userProfile.newsFeed=newsFeed
+            userProfile.idx=idx
+        }
+    }
     
     
     

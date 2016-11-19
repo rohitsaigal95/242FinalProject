@@ -64,6 +64,7 @@ class SignUp_ViewController: UIViewController {
             UserDefaults.standard.set(true, forKey: "hasLoginKey")
             UserDefaults.standard.synchronize()
             
+            performSegue(withIdentifier: "SignUpToNews", sender: self)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "News Feed")
             self.present(controller, animated: true, completion: nil)
@@ -106,5 +107,26 @@ class SignUp_ViewController: UIViewController {
         }
         password.attributedPlaceholder = NSAttributedString(string:"Password",
                                                              attributes:[NSForegroundColorAttributeName: pcolor])
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "SignUpToNews"){
+            print("segue reached")
+            let owner:User=User(name: (firstName.text! + "," + lastName.text!), level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0, email: email.text!)
+            var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu")]
+            let newsFeed = (segue.destination as! NewsFeed_ViewController)
+            
+            newsFeed.user=owner
+            newsFeed.friends=friends
+            let toAccept=Favor(sender: friends[0], value: 3, recipient: owner, favorDescription: "Give me a ride from grainger?")
+            let toAccept2=Favor(sender: friends[1], value: 10, recipient: owner, favorDescription: "Give me An A+++++ :) m?")
+            owner.pendingFavors.append(toAccept)
+            owner.pendingFavors.append(toAccept2)
+            
+            let news = [Favor(sender: friends[0], value: 0, recipient: owner, favorDescription: "This is a newsfeed favor")]
+            newsFeed.newsFeed=news
+        }
+       
     }
 }

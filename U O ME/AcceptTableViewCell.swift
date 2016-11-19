@@ -1,19 +1,15 @@
 //
-//  Contact_TableViewCell.swift
+//  AcceptTableViewCell.swift
 //  U O ME
 //
-//  Created by Collin Walther on 11/9/16.
+//  Created by Rohit Saigal on 11/18/16.
 //  Copyright © 2016 Collin Walther, Rohit Saigal. All rights reserved.
 //
 
 import UIKit
 
-class Contact_TableViewCell: UITableViewCell {
+class AcceptTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var contactImageView: UIImageView!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
