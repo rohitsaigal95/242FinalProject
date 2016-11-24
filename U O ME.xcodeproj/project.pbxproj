@@ -495,7 +495,7 @@
 				TargetAttributes = {
 					F023EF681DC924AB008C8AE5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BG9XZ5V7YM;
+						DevelopmentTeam = CDNW277NJ4;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -819,6 +819,7 @@
 				CODE_SIGN_ENTITLEMENTS = "U O ME/U O ME.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = CDNW277NJ4;
 				INFOPLIST_FILE = "U O ME/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-ME";
@@ -838,6 +839,7 @@
 				CODE_SIGN_ENTITLEMENTS = "U O ME/U O ME.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = CDNW277NJ4;
 				INFOPLIST_FILE = "U O ME/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CWRS242.U-O-ME";

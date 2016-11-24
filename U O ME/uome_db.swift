@@ -16,7 +16,8 @@ class uomeDB {
     private let users=Table("users")
     
     private let level = Expression<Int64>("level")
-    private let name = Expression<String?>("name")
+    private let first = Expression<String?>("first")
+    private let last = Expression<String?>("last")
     private let email = Expression<String>("email")
     private let id = Expression<Int64>("id")
     
@@ -39,7 +40,8 @@ class uomeDB {
         do {
             try db!.run(users.create(ifNotExists: true) { table in
                 table.column(id, primaryKey: true)
-                table.column(name)
+                table.column(first)
+                table.column(last)
                 table.column(email, unique: true)
                 table.column(level)
             })
@@ -49,9 +51,9 @@ class uomeDB {
         }
     }
     
-    func addUsers(uname: String, uemail: String, ulevel: Int64) -> Int64? {
+    func addUsers(ufirst: String, ulast:String, uemail: String, ulevel: Int64) -> Int64? {
         do {
-            let insert = users.insert(name <- uname, email <- uemail, level <- ulevel)
+            let insert = users.insert(first <- ufirst,last <- ulast, email <- uemail, level <- ulevel)
             print(insert.asSQL())
             let id = try db!.run(insert)
             
@@ -68,7 +70,7 @@ class uomeDB {
         
         do {
             for user in try db!.prepare(self.users) {
-                users.append(User(name: user[name]!, level: NSInteger(user[level]), image:UIImage(named:"profile_icon  30x30.png")!, points: 0, email: user[email]))
+                users.append(User(first: user[first]!,last:user[last]!, level: NSInteger(user[level]), image:UIImage(named:"profile_icon  30x30.png")!, points: 0, email: user[email],id:user[id] ))
                
             }
         } catch {

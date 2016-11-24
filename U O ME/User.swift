@@ -9,20 +9,25 @@
 import UIKit
 
 class User: NSObject {
-    let name: String
+    let id:Int64
+    let first: String
+    let last:String
     let level: NSInteger
     let picture: UIImage
     let favorPoints:NSInteger
     var email: String
+
     var pendingFavors=[Favor]()
     var requestedFavors=[Favor]()
     var favorHistory=[Favor]()
-    init(name: String, level:NSInteger, image:UIImage, points:NSInteger, email:String){
-        self.name=name
+    init(first: String, last:String, level:NSInteger, image:UIImage, points:NSInteger, email:String,id:Int64){
+        self.first=first
+        self.last=last
         self.level=level
         self.picture=image
         self.favorPoints=points
         self.email=email
+        self.id=id
         
     }
 }

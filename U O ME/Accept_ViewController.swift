@@ -18,11 +18,11 @@ class Accept_ViewController: UIViewController {
     @IBOutlet weak var people: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(user.name)
+        print(user.first)
         curr=user?.pendingFavors[idx!]
         favorDescription.text=curr?.favorDescription as String?
         
-        people.text=(curr?.sender.name)! + " will give you " + (curr?.value.description)!
+        people.text=(curr?.sender.first)! + " will give you " + (curr?.value.description)!
         
         // Do any additional setup after loading the view.
     }

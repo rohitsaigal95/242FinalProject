@@ -21,32 +21,34 @@ class Main_ViewController: UIViewController {
     var friends:[User]?
     var news:[Favor]?
     var DB:uomeDB?
+    var assigned=false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var assigned=false
-        friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu"),User(name: "Rohit", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"rohitnsaigal@gmail.com")]
-        
-        if let storedUsername = UserDefaults.standard.value(forKey: "email") as? String {
-            usernameField.text = storedUsername as String
-            for u in friends!{
-                print(u.name)
-                switch(u.email.caseInsensitiveCompare(storedUsername))
-                    
-                {
-                case .orderedSame:
-                    owner=u
-                    assigned=true
-                    break
-                default:
-                    break
-                }
-            }
-            
-        }
-        if(assigned==true){print("true")
-        }
+    
+        friends=uomeDB.instance.getUsers()
+//        friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu"),User(name: "Rohit", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"rohitnsaigal@gmail.com")]
+//        
+//        if let storedUsername = UserDefaults.standard.value(forKey: "email") as? String {
+//            usernameField.text = storedUsername as String
+//            for u in friends!{
+//                print(u.first)
+//                switch(u.email.caseInsensitiveCompare(storedUsername))
+//                    
+//                {
+//                case .orderedSame:
+//                    owner=u
+//                    assigned=false
+//                    break
+//                default:
+//                    break
+//                }
+//            }
+//            
+//        }
+//        if(assigned==true){print("record of the friend exists")
+//        }
         
     }
 
@@ -67,30 +69,33 @@ class Main_ViewController: UIViewController {
     
     
     @IBAction func loginAction(_ sender: AnyObject) {
-        
-        if (usernameField.text == "" || passwordField.text == "") {
-            let alertView = UIAlertController(title: "Login Problem",
-                                              message: "Wrong username or password." as String, preferredStyle:.alert)
-            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
-            alertView.addAction(okAction)
-            self.present(alertView, animated: true, completion: nil)
-            return;
-        }
-        
-        usernameField.resignFirstResponder()
-        passwordField.resignFirstResponder()
-        
-        
-            if checkLogin(usernameField.text!, password: passwordField.text!) {
-                performSegue(withIdentifier: "newsFeed", sender: self)
-            } else {
-                // 7.
-                let alertView = UIAlertController(title: "Login Problem",
-                                                  message: "Wrong username or password." as String, preferredStyle:.alert)
-                let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
-                alertView.addAction(okAction)
-                self.present(alertView, animated: true, completion: nil)
-            }
+        checkEmail()
+//        if (usernameField.text == "" || passwordField.text == "") {
+//            let alertView = UIAlertController(title: "Login Problem",
+//                                              message: "Wrong username or password." as String, preferredStyle:.alert)
+//            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
+//            alertView.addAction(okAction)
+//            self.present(alertView, animated: true, completion: nil)
+//            return;
+//        }
+//        
+//        usernameField.resignFirstResponder()
+//        passwordField.resignFirstResponder()
+//    
+//        
+//            if checkLogin(usernameField.text!, password: passwordField.text!) {
+//                performSegue(withIdentifier: "newsFeed", sender: self)
+//            }
+//           
+//            else {
+//                // 7.
+//                checkEmail()
+//                let alertView = UIAlertController(title: "Login Problem",
+//                                                  message: "Wrong username or password." as String, preferredStyle:.alert)
+//                let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
+//                alertView.addAction(okAction)
+//                self.present(alertView, animated: true, completion: nil)
+//            }
         
         
     }
@@ -106,7 +111,25 @@ class Main_ViewController: UIViewController {
             return false
         }
     }
+    func checkEmail(){
+        print("COMEON")
+        for u in uomeDB.instance.getUsers(){
+            print("hello")
+            print(u.email)
+            print(usernameField.text)
+            switch(u.email.caseInsensitiveCompare(usernameField.text!))
+                
+            {
+            case .orderedSame:
+                owner=u
+                performSegue(withIdentifier: "newsFeed", sender: self)
+                break
+            default:
+                break
+            }
+        }
     
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         

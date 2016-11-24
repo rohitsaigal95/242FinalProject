@@ -63,7 +63,7 @@ class SignUp_ViewController: UIViewController {
             MyKeychainWrapper.writeToKeychain()
             UserDefaults.standard.set(true, forKey: "hasLoginKey")
             UserDefaults.standard.synchronize()
-            uomeDB.instance.addUsers(uname: firstName.text!, uemail: email.text!, ulevel: 0)
+            uomeDB.instance.addUsers(ufirst: firstName.text!,ulast:lastName.text!, uemail: email.text!, ulevel: 0)
             
             
             
@@ -116,19 +116,20 @@ class SignUp_ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "SignUpToNews"){
             print("segue reached")
-            let owner:User=User(name: (firstName.text! + "," + lastName.text!), level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0, email: email.text!)
-            var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu")]
+            let owner:User=User(first: firstName.text!,last: lastName.text!, level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0, email: email.text!,id:0)
+            
+//            var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu")]
             let newsFeed = (segue.destination as! NewsFeed_ViewController)
-            
+//            
             newsFeed.user=owner
-            newsFeed.friends=friends
-            let toAccept=Favor(sender: friends[0], value: 3, recipient: owner, favorDescription: "Give me a ride from grainger?")
-            let toAccept2=Favor(sender: friends[1], value: 10, recipient: owner, favorDescription: "Give me An A+++++ :) m?")
-            owner.pendingFavors.append(toAccept)
-            owner.pendingFavors.append(toAccept2)
-            
-            let news = [Favor(sender: friends[0], value: 0, recipient: owner, favorDescription: "This is a newsfeed favor")]
-            newsFeed.newsFeed=news
+//            newsFeed.friends=friends
+//            let toAccept=Favor(sender: friends[0], value: 3, recipient: owner, favorDescription: "Give me a ride from grainger?")
+//            let toAccept2=Favor(sender: friends[1], value: 10, recipient: owner, favorDescription: "Give me An A+++++ :) m?")
+//            owner.pendingFavors.append(toAccept)
+//            owner.pendingFavors.append(toAccept2)
+//            
+//            let news = [Favor(sender: friends[0], value: 0, recipient: owner, favorDescription: "This is a newsfeed favor")]
+//            newsFeed.newsFeed=news
         }
        
     }

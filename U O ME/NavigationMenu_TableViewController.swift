@@ -138,17 +138,17 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
             //let p=parent as! NewsFeed_ViewController
             if let p=parent as? NewsFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? UserProfile{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? FavorFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             
@@ -167,17 +167,17 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
             //let p=parent as! NewsFeed_ViewController
             if let p=parent as? NewsFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? UserProfile{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? FavorFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             
@@ -196,17 +196,17 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
             //let p=parent as! NewsFeed_ViewController
             if let p=parent as? NewsFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? UserProfile{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             else if let p=parent as? FavorFeed_ViewController{
                 newsController.newsFeed = p.newsFeed
-                newsController.friends=p.friends
+//                newsController.friends=p.friends
                 newsController.user=p.user
             }
             
@@ -226,17 +226,17 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
             //let p=parent as! NewsFeed_ViewController
             if let p=parent as? NewsFeed_ViewController{
                 acceptController.newsFeed = p.newsFeed
-                acceptController.friends=p.friends
+//                acceptController.friends=p.friends
                 acceptController.user=p.user
             }
             else if let p=parent as? UserProfile{
                 acceptController.newsFeed = p.newsFeed
-                acceptController.friends=p.friends
+//                acceptController.friends=p.friends
                 acceptController.user=p.user
             }
             else if let p=parent as? FavorFeed_ViewController{
                 acceptController.newsFeed = p.newsFeed
-                acceptController.friends=p.friends
+//                acceptController.friends=p.friends
                 acceptController.user=p.user
             }
 

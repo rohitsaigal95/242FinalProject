@@ -19,7 +19,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     var currFeed:[Favor]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        friends=uomeDB.instance.getUsers()
         newsTable.register(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
 
         addNavigationMenu()
@@ -50,7 +50,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
         if let value=newsFeed{
             let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell
             let curr=value[indexPath.row]
-            cell.topLabel.text=(curr.sender.name + " earned/awared "+String(curr.value)+" points from " + curr.recipient.name)
+            cell.topLabel.text=(curr.sender.first + " earned/awared "+String(curr.value)+" points from " + curr.recipient.first)
             cell.favorTitleLabel.text=curr.favorDescription as String
             
             return cell

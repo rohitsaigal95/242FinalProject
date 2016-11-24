@@ -55,8 +55,8 @@ class RequestFavor: UIViewController{
         
         print(friends.count)
             for u in friends!{
-                print(u.name)
-                switch(u.name.caseInsensitiveCompare(recipientName.text!))
+                print(u.first)
+                switch(u.first.caseInsensitiveCompare(recipientName.text!))
                     
                 {
                 case .orderedSame:

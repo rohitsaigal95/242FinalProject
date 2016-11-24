@@ -31,11 +31,12 @@ class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var badge3Label: UILabel!
     @IBOutlet weak var badge4ImageView: UIImageView!
     @IBOutlet weak var badge4Label: UILabel!
-    
+    var friends=uomeDB.instance.getUsers()
     
     /*
  set up a fake data base of friends */
-    var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu")]
+    
+    //    var friends=[User(name: "Collin", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"cwalthe2@illinois.edu"),User(name: "Nitish", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"nitishistheman@studmuffin.edu"),User(name: "Jayme", level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points:0,email:"jayms_parker@bentley.edu")]
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -49,7 +50,7 @@ class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         
         //print(user.favorHistory.count)
-        userName.text=user.name
+        userName.text=user.first + " " + user.last
         userLevel.text="Level: " + String(user.level)
         userPicture.image = user.picture
         
@@ -89,7 +90,7 @@ class UserProfile: UIViewController, UITableViewDelegate, UITableViewDataSource,
  
          let currFavor=user.favorHistory[indexPath.row]
         
-        cell.favorFacts.text = currFavor.recipient.name+" earned "+String(currFavor.value) + " points from " + user.name+" for:"
+        cell.favorFacts.text = currFavor.recipient.first+" earned "+String(currFavor.value) + " points from " + user.first+" for:"
         
         cell.favorInfo.text = currFavor.favorDescription as String
         

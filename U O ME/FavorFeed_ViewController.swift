@@ -19,7 +19,7 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        friends=uomeDB.instance.getUsers()
         favorTable.register(UINib(nibName: "Favor_TableViewCell", bundle: nil), forCellReuseIdentifier: "FavorCell")
         
         // Do any additional setup after loading the view.
@@ -76,7 +76,7 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         if let value=user{
             let cell = favorTable.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! Favor_TableViewCell
             let currFavor=value.pendingFavors[indexPath.row]
-            cell.topLabel.text = currFavor.sender.name+" is requesting "+String(currFavor.value) + " points from " + currFavor.recipient.name+" for:"
+            cell.topLabel.text = currFavor.sender.first+" is requesting "+String(currFavor.value) + " points from " + currFavor.recipient.first+" for:"
             
             cell.favorTitleLabel.text = currFavor.favorDescription as String
             cell.acceptButton.tag=indexPath.row
@@ -147,17 +147,17 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         })
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "FavorToAccept"){
-            print("favor to Accept")
-            let userProfile = (segue.destination as! Accept_ViewController)
-            userProfile.user = user
-            userProfile.friends=friends
-            userProfile.newsFeed=newsFeed
-            userProfile.idx=idx
-        }
-    }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "FavorToAccept"){
+//            print("favor to Accept")
+//            let userProfile = (segue.destination as! Accept_ViewController)
+//            userProfile.user = user
+//            userProfile.friends=friends
+//            userProfile.newsFeed=newsFeed
+//            userProfile.idx=idx
+//        }
+//    }
+//    
     
     
     
