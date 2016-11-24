@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import SQLite
 class Main_ViewController: UIViewController {
     
     let MyKeychainWrapper = KeychainWrapper()
-
+    
     @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var usernameField: UITextField!
@@ -20,7 +20,7 @@ class Main_ViewController: UIViewController {
     var owner:User?
     var friends:[User]?
     var news:[Favor]?
-    
+    var DB:uomeDB?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -140,7 +140,12 @@ class Main_ViewController: UIViewController {
             
         }
         
-//        if(segue.identifier == "LoginToFavor"){
+        if(segue.identifier == "MenuToSignUp"){
+            print("reacj")
+          let signUp=segue.destination as! SignUp_ViewController
+            signUp.DB=DB
+            
+        }
 //            var user:User=User(name: String, level: <#T##NSInteger#>, image: <#T##UIImage#>, points: <#T##NSInteger#>)
 //            let requestFavor = (segue.destination as! RequestFavor)
 //            requestFavor.value = user
@@ -148,6 +153,18 @@ class Main_ViewController: UIViewController {
 //        }
         
     }
+//    func openDatabase() -> OpaquePointer {
+//        var db: OpaquePointer? = nil
+//        
+//        if sqlite3_open(part1DbPath, &db) == 0 {
+//            print("Successfully opened connection to database at \(part1DbPath)")
+//            return db!
+//        } else {
+//            print("Unable to open database. Verify that you created the directory described " +
+//                "in the Getting Started section.")
+//            
+//        }
+//    }
 
 }
 

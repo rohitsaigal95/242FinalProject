@@ -85,7 +85,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Sign up with email"/>
                                         <connections>
-                                            <segue destination="Pdf-OS-aBv" kind="modal" id="fms-Kj-yXu"/>
+                                            <segue destination="Pdf-OS-aBv" kind="modal" identifier="MainToSignUp" id="fms-Kj-yXu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="57f-qS-czf">
@@ -857,7 +857,7 @@
         <scene sceneID="zeB-jZ-cIN">
             <objects>
                 <viewController storyboardIdentifier="Request Favor " title="Request Favor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AuL-Gu-aYF" customClass="RequestFavor" customModule="U_O_ME" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Na-9x-tR6">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="5Na-9x-tR6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -974,8 +974,8 @@
         <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PhL-KI-86p"/>
-        <segue reference="2If-Xu-AgP"/>
         <segue reference="Ybp-U1-4Pu"/>
+        <segue reference="aQ0-Mk-YjY"/>
+        <segue reference="2If-Xu-AgP"/>
     </inferredMetricsTieBreakers>
 </document>

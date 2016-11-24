@@ -16,7 +16,7 @@ class SignUp_ViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    var DB:uomeDB?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +63,9 @@ class SignUp_ViewController: UIViewController {
             MyKeychainWrapper.writeToKeychain()
             UserDefaults.standard.set(true, forKey: "hasLoginKey")
             UserDefaults.standard.synchronize()
+            uomeDB.instance.addUsers(uname: firstName.text!, uemail: email.text!, ulevel: 0)
+            
+            
             
             performSegue(withIdentifier: "SignUpToNews", sender: self)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
