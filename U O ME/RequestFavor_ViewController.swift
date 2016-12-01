@@ -14,8 +14,10 @@ class RequestFavor: UIViewController{
 
     @IBOutlet weak var recipientName: UITextField!
     
+    
     @IBOutlet weak var favorValue: UISlider!
 
+    @IBOutlet weak var displaySlider: UILabel!
     @IBOutlet weak var displayFavor: UITextView!
     var user:User!
     var friend:User?
@@ -24,10 +26,10 @@ class RequestFavor: UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-       
-      
-        user=value
-      
+       //print(user.getFullName())
+        
+      print("request favor loaded")
+        
         //friend=(presentingViewController as! UserProfile).friend
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -37,57 +39,79 @@ class RequestFavor: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var displaySlider: UILabel!
-    @IBAction func request(sender: UIButton) {
-        //Pass.passed.added=true
-        //if let isadded=Pass.passed.added{
-        //    print(isadded)
-        //}
-    print("button was pressed")
-        var valid=false
-        
+    
+    @IBAction func requestFAvor(_ sender: Any) {
+        print("button was pressed")
+//        var valid=false
+//        
         var recipient:User?
-        
-            for u in friends!{
-                print(u.name)
-                switch(u.name.caseInsensitiveCompare(recipientName.text!))
-                    
-                {
-                case .orderedSame:
-                    recipient=u
-                    valid=true
-                    break
-                default:
-                    break
-                }
+//
+        print(user.friends!.count)
+        for u in user.friends!{
+            print(u.first)
+            switch(u.first.caseInsensitiveCompare(recipientName.text!))
+                
+            {
+            case .orderedSame:
+                print("oreder same")
+                recipient=u
+                recipientName.text=u.email
+                break
+            default:
+                break
             }
-        
-        if(valid==false){
-            recipient=User(name: recipientName.text!, level: 0, image: UIImage(named: "default-profile.png")!, points: 0)
         }
+//
+//        //        if(valid==false){
+//        //            recipient=User(first: recipientName.text!, level: 0, image: UIImage(named: "default-profile.png")!, points: 0)
+//        //        }
+//        //
+//        
+       
         
-        
-        let newFavor=Favor(value: Int(favorValue.value), recipient: recipient!, favorDescription: displayFavor.text as NSString)
+        if(recipient==nil){
+            let alertView = UIAlertController(title: "Sorry :(",
+                                              message: "This person isn't in your friends" as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "ask a different friend", style: .default, handler: nil)
+            alertView.addAction(okAction)
+            self.present(alertView, animated: true, completion: nil)
+            return
+        }
+        print(recipient?.getFullName())
+        let newFavor=Favor(value: Int(favorValue.value), recipient: recipient!, favorDescription: displayFavor.text as NSString, sender:user,favorid:-1,status:"incomplete")
         recipient?.favorHistory.append(newFavor)
         recipient?.pendingFavors.append(newFavor)
         user.requestedFavors.append(newFavor)
         user?.favorHistory.append(newFavor)
-        
+        uomeDB.instance.addFavor(newFavor: newFavor)
         
         /*
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("User Profile")
-        self.presentViewController(controller,animated:true,completion:nil)
-    */
-    }
-    
-    @IBAction func sliderAction(sender: AnyObject) {
+         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("User Profile")
+         self.presentViewController(controller,animated:true,completion:nil)
+         se
+         */
+        //self.dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
         
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    
+    @IBAction func cancel(_ sender: Any) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func sliderAction(_ sender: Any) {
         displaySlider.text=String(Int(favorValue.value))
     }
+    
+ 
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "toProfile"){
+        if(segue.identifier == "RequestToProfile"){
+            print("sup")
             let userProfile = (segue.destination as! UserProfile)
-            userProfile.value = user
+            userProfile.user = user
             
         }
     }

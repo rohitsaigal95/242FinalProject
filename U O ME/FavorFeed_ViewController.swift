@@ -13,8 +13,8 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var wholeView: UIView!
     @IBOutlet weak var favorTable: UITableView!
     var friends:[User]!
-    var value:User!
-    
+    var user:User!
+    var idx:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,26 +31,48 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
-    
+
     // MARK: Favor tableview
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        if let user=value{
-            return user.favorHistory.count
+        if let value=user{
+            //value.pendingFavors=User.updateFavorStatus(arr: user.pendingFavors)
+            value.updatePendingFavors()
+            let arr=User.getFavorsThatAre(status: "incomplete", arr: value.pendingFavors)
+            
+            return arr!.count
         }
-        return 2
+        return 1
     }
-    
+    @IBAction func acceptTask(_ sender: UIButton) {
+        
+        
+        let touchpoint: CGPoint = sender.convert(CGPoint.zero, to: self.favorTable)
+        let buttonIndexPath: NSIndexPath = self.favorTable.indexPathForRow(at: touchpoint)! as NSIndexPath
+        let x=buttonIndexPath.row
+        user.updatePendingFavors()
+        idx=Int((User.getFavorsThatAre(status: "incomplete", arr: user.pendingFavors)?[x].favorid)!)
+        print(idx!)
+
+        performSegue(withIdentifier: "FavorToAccept", sender: self)
+        
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if let user=value{
+        if let value=user{
             let cell = favorTable.dequeueReusableCell(withIdentifier: "FavorCell", for: indexPath as IndexPath) as! Favor_TableViewCell
-            let currFavor=user.favorHistory[indexPath.row]
-            cell.topLabel.text = currFavor.recipient.name+" earned "+String(currFavor.value) + " points from " + user.name+" for:"
+            //value.getPendingAndRequestedFavors()
+            //value.pendingFavors=User.updateFavorStatus(arr: user.pendingFavors)
+            value.updatePendingFavors()
+            let arr=User.getFavorsThatAre(status: "incomplete", arr: value.pendingFavors)
+            let currFavor=arr?[indexPath.row]
+            print(currFavor?.status)
+            let firstPart=(currFavor?.recipient.first)!+" earned "+String(describing: currFavor!.value)
+            cell.topLabel.text = firstPart + " points from " + user.first+" for:"
             
-            cell.favorTitleLabel.text = currFavor.favorDescription as String
-            
+            cell.favorTitleLabel.text = currFavor?.favorDescription as! String
+            cell.acceptButton.addTarget(self, action: #selector(FavorFeed_ViewController.acceptTask(_:)), for: .touchUpInside)
+            cell.clipsToBounds=true
             return cell
             
         }
@@ -60,17 +82,18 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.topLabel.text = "collin earned 3 points from rohit for:"
             cell.favorTitleLabel.text = "Doing homework"
             
-            
+            //cell.clipsToBounds = true;
             
             return cell
         }
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return 108
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
@@ -95,11 +118,19 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NavigationMenuViewController")
+        (controller as! NavigationMenu_ViewController).user=user
         self.view.insertSubview(controller.view, at: 0)
         
         addChildViewController(controller)
         controller.didMove(toParentViewController: self)
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     func showNavigationMenu() {
@@ -114,8 +145,36 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
         })
     }
 
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                if (self.wholeView.frame.origin.x == 0){
+                    showNavigationMenu()
+                }
+            case UISwipeGestureRecognizerDirection.left:
+                if (self.wholeView.frame.origin.x != 0){
+                    hideNavigationMenu()
+                }
+                
+            default:
+                break
+            }
+        }
+    }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "FavorToAccept"){
+            print("profile to accept segue passed data")
+                        let userProfile = (segue.destination as! Accept_ViewController)
+                        userProfile.user = user
+                        userProfile.idx=idx
+            
+            
+        }
+    }
     
     
     

@@ -12,14 +12,21 @@ class Favor: NSObject {
     let value:NSInteger
     let recipient:User
     let favorDescription: NSString
-    
-    
-    init(value:NSInteger,recipient:User,favorDescription:NSString){
+    let sender:User
+    var status:String
+    let favorid:Int64
+    init(value:NSInteger,recipient:User,favorDescription:NSString,sender:User,favorid:Int64,status:String){
         self.value=value
         self.recipient=recipient
         self.favorDescription=favorDescription
-        
-        
+        self.sender=sender
+        self.favorid=favorid
+        self.status=status
     }
-    
+    func getRecipientName()->String{
+        return self.recipient.getFullName()
+    }
+    func getSenderName()->String{
+        return self.sender.getFullName()
+    }
 }

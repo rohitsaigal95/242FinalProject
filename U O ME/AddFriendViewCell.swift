@@ -1,22 +1,21 @@
 //
-//  Contact_TableViewCell.swift
+//  AddFriendViewCell.swift
 //  U O ME
 //
-//  Created by Collin Walther on 11/9/16.
+//  Created by Rohit Saigal on 11/30/16.
 //  Copyright © 2016 Collin Walther, Rohit Saigal. All rights reserved.
 //
 
 import UIKit
 
-class Contact_TableViewCell: UITableViewCell {
+class AddFriendViewCell: UITableViewCell {
 
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var addButton: UIButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

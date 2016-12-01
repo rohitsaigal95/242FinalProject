@@ -17,7 +17,7 @@ class SignUp_ViewController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
-    
+    var user:User?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -63,10 +63,16 @@ class SignUp_ViewController: UIViewController {
             MyKeychainWrapper.writeToKeychain()
             UserDefaults.standard.set(true, forKey: "hasLoginKey")
             UserDefaults.standard.synchronize()
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "News Feed")
-            self.present(controller, animated: true, completion: nil)
+            let newUser:User=User(first: firstName.text!, last: lastName.text!,email:email.text!,pass:password.text!, level: 0, image:UIImage(named:"profile_icon  30x30.png")!, points: 0,id:0,friendid:"-1")
+            let x = uomeDB.instance.addUsers(newUser: newUser)
+            user=newUser
+            user?.id=x!
+            print(user?.id)
+            print("the new user id is " + String(describing: x))
+            performSegue(withIdentifier: "SignUpToNews", sender: self)
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "News Feed")
+//            self.present(controller, animated: true, completion: nil)
         }
         else{
             changeTextFieldHintColors(firstNameFilled, lastNameFlag: lastNameFilled, emailFlag: emailFilled, passwordFlag: passwordFilled)
@@ -106,5 +112,14 @@ class SignUp_ViewController: UIViewController {
         }
         password.attributedPlaceholder = NSAttributedString(string:"Password",
                                                              attributes:[NSForegroundColorAttributeName: pcolor])
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if(segue.identifier == "SignUpToNews"){
+            
+            var newsFeed = segue.destination as! NewsFeed_ViewController
+            newsFeed.user=user
+        }
     }
 }

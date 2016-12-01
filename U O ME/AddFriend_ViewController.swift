@@ -1,63 +1,78 @@
 //
-//  NewsFeed_ViewController.swift
+//  AddFriend_ViewController.swift
 //  U O ME
 //
-//  Created by Collin Walther on 11/2/16.
+//  Created by Rohit Saigal on 11/30/16.
 //  Copyright © 2016 Collin Walther, Rohit Saigal. All rights reserved.
 //
 
 import UIKit
 
+class AddFriend_ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate {
 
-class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate{
+   
 
-    @IBOutlet weak var newsTable: UITableView!
-    @IBOutlet var wholeView: UIView!
+    @IBOutlet weak var wholeView: UIView!
+    @IBOutlet weak var addFriend: UITableView!
     var user:User?
-    
-    
-    
+    var users:[User]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        //users=uomeDB.instance.getUsers()
+        //print("the num of users is " + String(describing: users!.count))
+        addFriend.register(UINib(nibName: "AddFriendViewCell", bundle: nil), forCellReuseIdentifier: "AddFriend")
         
-        newsTable.register(UINib(nibName: "News_TableViewCell", bundle: nil), forCellReuseIdentifier: "NewsCell")
-
         addNavigationMenu()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+    @IBAction func addFriend(_ sender: UIButton){
+        let touchpoint: CGPoint = sender.convert(CGPoint.zero, to: self.addFriend)
+        let buttonIndexPath: NSIndexPath = self.addFriend.indexPathForRow(at: touchpoint)! as NSIndexPath
+        let idx=buttonIndexPath.row
+        print(idx)
+        if(user?.friends?.contains((users?[idx])!))!{
+            let alertView = UIAlertController(title: "Easy There",
+                                              message: "This Person is already your friend" as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "add another friend", style: .default, handler: nil)
+            alertView.addAction(okAction)
+            self.present(alertView, animated: true, completion: nil)
+        }
+        else if((user?.email)! == (users?[idx])?.email){
+            let alertView = UIAlertController(title: "Easy There",
+                                              message: "You Cant Add Yourself" as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "add another friend", style: .default, handler: nil)
+            alertView.addAction(okAction)
+            self.present(alertView, animated: true, completion: nil)
+        }
+        else{
+            print("reach the click")
+           user?.friends?.append((users?[idx])!)
+            
+            let newNum=(user?.friendid)!+","+String(users![idx].id)
+                        let val = uomeDB.instance.updateUsersFriends(cid: user!.id, newNum: newNum)
+          print(val)
+        }
+    }
     
     
     // MARK: Favor tableview
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        return (user?.getNewsFeed()?.count)!
+        users=uomeDB.instance.getUsers()
+        return users!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell
-        let currFavor=user?.getNewsFeed()?[indexPath.row]
-//        cell.topLabel.text=currFavor?.getSenderName() +"requested " + String(currFavor?.value) + " points from " + currFavor?.getRecipientName()
-        let first = (currFavor?.getSenderName())! + " requested "
-        cell.topLabel.text=first + String(describing: currFavor!.value) + " points from " + (currFavor?.getRecipientName())!
-        cell.favorTitleLabel.text=currFavor?.favorDescription as! String
-//        if indexPath.row == 0{
-//            cell.topLabel.text = "Collin W. earned 3 points from Rohit S. for:"
-//            cell.favorTitleLabel.text = "Doing homework"
-//        }
-//        else{
-//            cell.topLabel.text = "Rohit S. awarded 6 points to Benjamin D. for:"
-//            cell.favorTitleLabel.text = "Picking up the pizza"
-//        }
-//        
-        
-        //cell.clipsToBounds = true;
+        let cell = addFriend.dequeueReusableCell(withIdentifier: "AddFriend", for: indexPath) as! AddFriendViewCell
+            
+        users=uomeDB.instance.getUsers()
+        cell.userName.text=users?[indexPath.row].getFullName()
+        cell.addButton.addTarget(self, action: #selector(AddFriend_ViewController.addFriend(_:)), for: .touchUpInside)        //cell.clipsToBounds = true;
         
         
         return cell
@@ -74,11 +89,8 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     
-
-    // MARK: Navigation Menu
     
-    @IBAction func navigationClick(_ sender: AnyObject) {
-        
+    @IBAction func navClick(_ sender: Any) {
         if (self.wholeView.frame.origin.x == 0){
             showNavigationMenu()
         }
@@ -86,7 +98,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
             hideNavigationMenu()
         }
     }
-    
+    // MARK: Navigation Menu
     
     func addNavigationMenu() {
         
@@ -120,7 +132,7 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
             
         })
     }
-
+    
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -144,15 +156,14 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
