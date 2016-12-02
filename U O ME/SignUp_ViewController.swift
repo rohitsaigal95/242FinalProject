@@ -16,7 +16,12 @@ class SignUp_ViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    /*
+ go back to login
+ */
+    @IBAction func cancel(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     var user:User?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,10 @@ class SignUp_ViewController: UIViewController {
     }
     
     
-    
+    /*
+ makes a user upon signing up if valid credentials are entered
+     otherwise error message showss
+ */
     @IBAction func signUpButtonClick(_ sender: AnyObject) {
         var firstNameFilled : Bool = true
         var lastNameFilled : Bool = true

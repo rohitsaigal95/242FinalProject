@@ -38,7 +38,9 @@ class NewsFeed_ViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         return (user?.getNewsFeed()?.count)!
     }
-    
+    /*
+ news feed table showing all favors 
+ */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = newsTable.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! News_TableViewCell

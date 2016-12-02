@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+/*
+ add friend story board
+ */
 class AddFriend_ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, NavigationMenu_ViewControllerDelegate {
 
    
@@ -29,6 +31,10 @@ class AddFriend_ViewController: UIViewController,UITableViewDelegate, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
+ 
+    add a friend to a users friend list and update the database
+ */
     @IBAction func addFriend(_ sender: UIButton){
         let touchpoint: CGPoint = sender.convert(CGPoint.zero, to: self.addFriend)
         let buttonIndexPath: NSIndexPath = self.addFriend.indexPathForRow(at: touchpoint)! as NSIndexPath

@@ -9,6 +9,7 @@
 import Foundation
 import SQLite
 import UIKit
+//database class that implements a user and favor table with functions to add users and favors 
 class uomeDB {
     static let instance = uomeDB()
     let db:Connection?
@@ -46,6 +47,11 @@ class uomeDB {
         createUserTable()
         createFavorTable()
     }
+    
+    /*
+ 
+ create a user table
+ */
     func createUserTable() {
         do {
             try db!.run(users.create(ifNotExists: true) { table in
@@ -62,6 +68,10 @@ class uomeDB {
             print("Unable to create table")
         }
     }
+    /*
+     
+     create a favor table
+     */
     func createFavorTable() {
         do {
             try db!.run(favors.create(ifNotExists: true) { table in
@@ -77,6 +87,9 @@ class uomeDB {
             print("Unable to create table")
         }
     }
+    /*
+     add a user into the table
+     */
     func addUsers(newUser:User) -> Int64? {
         do {
             let insert = users.insert(first <- newUser.first,last <- newUser.last, email <- newUser.email, level <- Int64(newUser.level),password <- newUser.password,friendNumbers <- newUser.friendid)
@@ -90,7 +103,9 @@ class uomeDB {
             return -1
         }
     }
-    
+    /*
+   get list of users in databse
+     */
     func getUsers() -> [User] {
         var users = [User]()
         
@@ -108,6 +123,11 @@ class uomeDB {
         
         return users
     }
+    /*
+     
+     get a list of favors in database 
+     
+     */
     func getFavors() -> [Favor] {
         var favors = [Favor]()
         
@@ -126,6 +146,9 @@ class uomeDB {
         return favors
     }
     
+    /*
+add a favor into the favor table
+     */
     func addFavor(newFavor:Favor) -> Int64? {
         do {
             let insert = favors.insert(recipient <- newFavor.getRecipientName(),sender<-newFavor.getSenderName(),favorDescription <- newFavor.favorDescription as String, value <- Int64(newFavor.value),status<-newFavor.status)
@@ -139,6 +162,10 @@ class uomeDB {
             return -1
         }
     }
+    /*
+     
+     update the csv of friends for a user when adding a friend
+     */
     func updateUsersFriends(cid:Int64, newNum: String) -> Bool {
         let user = users.filter(id == cid)
         do {
@@ -154,7 +181,9 @@ class uomeDB {
         
         return false
     }
-    
+    /*
+     update the status of a favor "incomplete" or "complete"
+     */
     func updateFavorStatus(fid:Int64, newStatus: String) -> Bool {
         let favor = favors.filter(favorId == fid)
         do {

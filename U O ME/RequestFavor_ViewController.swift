@@ -8,7 +8,9 @@
 
 import UIKit
 
-
+/*
+ request view controller
+ */
 class RequestFavor: UIViewController{
     
 
@@ -39,7 +41,9 @@ class RequestFavor: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    
+    /*
+     request a favor and adds favor to databse
+ */
     @IBAction func requestFAvor(_ sender: Any) {
         print("button was pressed")
 //        var valid=false
@@ -97,16 +101,24 @@ class RequestFavor: UIViewController{
         self.navigationController?.popViewController(animated: true)
     }
 
-    
+    /*
+ cancel button to pop view controller
+ */
     @IBAction func cancel(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)
     }
+    
+    /*
+     update slider value as user interacts with it
+ */
     @IBAction func sliderAction(_ sender: Any) {
         displaySlider.text=String(Int(favorValue.value))
     }
     
- 
+ /*
+ segue to pass data
+ */
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "RequestToProfile"){
             print("sup")

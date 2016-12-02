@@ -17,6 +17,10 @@ class Accept_ViewController: UIViewController {
     var user:User?
     var idx:Int?
     var currfavor:Favor?
+    
+    /*
+ upon loading get the appropraite favore into currFavor
+ */
     override func viewDidLoad() {
         super.viewDidLoad()
 //        people.text=(currfavor?.getSenderName())! + "is asking you for " + String(describing: currfavor!.value) + " for:"
@@ -26,12 +30,15 @@ class Accept_ViewController: UIViewController {
                 currfavor=fav
             }
         }
-       // currfavor=favors.contains(where: <#T##(Favor) throws -> Bool#>)
+//        currfavor=favors.contains(where: <#T##(Favor) throws -> Bool#>)
         people.text=(currfavor?.getSenderName())!+" is asking you for \n" + String(describing: currfavor!.value) + " for: "
         favorDescription.text=currfavor!.favorDescription as String
         // Do any additional setup after loading the view.
     }
-
+/*
+ changes the status of a favor in the database 
+     
+ */
     @IBAction func acceptFavor(_ sender: Any) {
 //        user?.pendingFavors.remove(at: idx!)
         

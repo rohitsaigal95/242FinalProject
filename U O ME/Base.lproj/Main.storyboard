@@ -88,7 +88,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Sign up with email"/>
                                         <connections>
-                                            <segue destination="Pdf-OS-aBv" kind="modal" id="fms-Kj-yXu"/>
+                                            <segue destination="Pdf-OS-aBv" kind="push" id="fms-Kj-yXu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dzr-sW-fiH">
@@ -307,7 +307,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="push" id="vfs-KW-7YY"/>
+                                                    <action selector="cancel:" destination="Pdf-OS-aBv" eventType="touchUpInside" id="CmQ-UI-59s"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EyD-gB-TeX">
@@ -341,7 +341,7 @@
                         <outlet property="firstName" destination="pXE-GA-NxB" id="Ri4-yV-Adj"/>
                         <outlet property="lastName" destination="d7v-oL-0Zx" id="n5e-yX-BsC"/>
                         <outlet property="password" destination="Nz8-Gj-m59" id="1Re-CV-2Ii"/>
-                        <segue destination="qU7-In-MQe" kind="modal" identifier="SignUpToNews" id="LHh-6b-zLp"/>
+                        <segue destination="qU7-In-MQe" kind="push" identifier="SignUpToNews" id="LHh-6b-zLp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lps-JQ-4BU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1108,9 +1108,8 @@
         <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="LHh-6b-zLp"/>
         <segue reference="PhL-KI-86p"/>
         <segue reference="z2s-3n-oII"/>
-        <segue reference="vfs-KW-7YY"/>
-        <segue reference="LHh-6b-zLp"/>
     </inferredMetricsTieBreakers>
 </document>

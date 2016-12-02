@@ -67,8 +67,8 @@ class FavorFeed_ViewController: UIViewController, UITableViewDelegate, UITableVi
             let arr=User.getFavorsThatAre(status: "incomplete", arr: value.pendingFavors)
             let currFavor=arr?[indexPath.row]
             print(currFavor?.status)
-            let firstPart=(currFavor?.recipient.first)!+" earned "+String(describing: currFavor!.value)
-            cell.topLabel.text = firstPart + " points from " + user.first+" for:"
+            let firstPart=(currFavor?.getSenderName())! + " offers: " + String(describing: currFavor!.value)
+            cell.topLabel.text = firstPart + " points"
             
             cell.favorTitleLabel.text = currFavor?.favorDescription as! String
             cell.acceptButton.addTarget(self, action: #selector(FavorFeed_ViewController.acceptTask(_:)), for: .touchUpInside)

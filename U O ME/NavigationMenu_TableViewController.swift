@@ -152,6 +152,10 @@ class NavigationMenu_ViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    /*
+ allows you to pass data from navigation controller to userprofile, news feed, favor feed, addfriends, and invite contacts
+ */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
